@@ -10,7 +10,7 @@ using std::cerr;
 /**
  * @brief The main function.
  *
- * @return int The exit status code. 
+ * @return int The exit status code.
  * 0 for success, non-zero for failure.
  */
 int main()

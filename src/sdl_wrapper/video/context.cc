@@ -4,7 +4,7 @@
 
 namespace sdl::video
 {
-Context::Context(::sdl::Context &sdl) : active(true)
+Context::Context(__attribute__((unused))::sdl::Context &sdl) : active(true)
 {
     int code = SDL_InitSubSystem(SDL_INIT_VIDEO);
     if (code != 0)

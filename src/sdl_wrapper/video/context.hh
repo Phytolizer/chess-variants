@@ -20,7 +20,7 @@ namespace sdl::video
 class Context
 {
   public:
-    Context(::sdl::Context &parent);
+    Context(__attribute__((unused))::sdl::Context &parent);
 
     ~Context();
 

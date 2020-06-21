@@ -23,7 +23,7 @@ class Context
     /**
      * @brief Construct a new SDLContext object. Constructing
      * this object results in a call to SDL_Init(0).
-     * 
+     *
      */
     Context();
     ~Context();
@@ -41,6 +41,6 @@ class Context
   private:
     bool active;
 };
-}
+} // namespace sdl
 
 #endif // SDL_WRAPPER_SDL_CONTEXT_HH

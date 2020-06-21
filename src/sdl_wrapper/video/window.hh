@@ -18,7 +18,8 @@ class Context;
 class Window
 {
   public:
-    Window(video::Context &context, std::string_view title, int x, int y, int w, int h, Uint32 flags);
+    Window(__attribute__((unused)) video::Context &context, std::string_view title, int x, int y, int w, int h,
+           Uint32 flags);
     Window(SDL_Window *handle) __attribute__((nonnull(2)));
 
     ~Window();
