@@ -1,8 +1,8 @@
 /// @file main.cc
 /// @author Kyle Coffey
 
-#include <SDL2/SDL.h>
 #include <iostream>
+#include <sdl_wrapper/sdl_context.hh>
 
 using std::cerr;
 
@@ -14,19 +14,7 @@ using std::cerr;
  */
 int main()
 {
-    // initialize SDL
+    SDLContext sdlContext;
 
-    /// SDL's init flags.
-    Uint32 flags = SDL_INIT_VIDEO;
-
-    /// The error code from SDL functions. I hate C
-    int code = SDL_Init(flags);
-    if (code != 0) 
-    {
-        cerr << "Could not initialize SDL: " << SDL_GetError() << "\n";
-        return code;
-    }
-
-    SDL_Quit();
     return 0;
 }
