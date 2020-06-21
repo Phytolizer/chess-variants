@@ -9,13 +9,15 @@
 #ifndef SDL_WRAPPER_SDL_CONTEXT_HH
 #define SDL_WRAPPER_SDL_CONTEXT_HH
 
-#include <sdl_wrapper/sdl_video_context.hh>
+#include <sdl_wrapper/video/context.hh>
 
+namespace sdl
+{
 /**
  * @brief An RAII wrapper for SDL's initialization and
  * deinitialization.
  */
-class SDLContext
+class Context
 {
   public:
     /**
@@ -23,21 +25,22 @@ class SDLContext
      * this object results in a call to SDL_Init(0).
      * 
      */
-    SDLContext();
-    ~SDLContext();
+    Context();
+    ~Context();
 
     /// no copy constructors
-    SDLContext(const SDLContext &) = delete;
+    Context(const Context &) = delete;
     /// no copy assignment
-    SDLContext &operator=(const SDLContext &) = delete;
+    Context &operator=(const Context &) = delete;
 
-    SDLContext(SDLContext &&);
-    SDLContext &operator=(SDLContext &&);
+    Context(Context &&);
+    Context &operator=(Context &&);
 
-    SDLVideoContext initVideo();
+    video::Context initVideo();
 
   private:
     bool active;
 };
+}
 
 #endif // SDL_WRAPPER_SDL_CONTEXT_HH

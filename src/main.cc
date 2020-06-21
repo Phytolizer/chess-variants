@@ -2,7 +2,7 @@
 /// @author Kyle Coffey
 
 #include <iostream>
-#include <sdl_wrapper/sdl_context.hh>
+#include <sdl_wrapper/context.hh>
 
 using std::cerr;
 
@@ -14,7 +14,7 @@ using std::cerr;
  */
 int main()
 {
-    SDLContext sdlContext;
+    sdl::Context sdlContext;
 
     return 0;
 }

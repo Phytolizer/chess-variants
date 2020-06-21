@@ -8,25 +8,32 @@
 #ifndef SDL_WRAPPER_SDL_VIDEO_CONTEXT_HH
 #define SDL_WRAPPER_SDL_VIDEO_CONTEXT_HH
 
+namespace sdl
+{
 // predeclaration, prevent recursive includes
-class SDLContext;
+class Context;
+} // namespace sdl
 
-class SDLVideoContext
+namespace sdl::video
+{
+
+class Context
 {
   public:
-    SDLVideoContext(SDLContext &parent);
+    Context(::sdl::Context &parent);
 
-    ~SDLVideoContext();
+    ~Context();
 
     /// no copy constructor
-    SDLVideoContext(const SDLVideoContext &) = delete;
+    Context(const Context &) = delete;
     /// no copy assignment
-    SDLVideoContext &operator=(const SDLVideoContext &) = delete;
-    SDLVideoContext(SDLVideoContext &&);
-    SDLVideoContext &operator=(SDLVideoContext &&);
+    Context &operator=(const Context &) = delete;
+    Context(Context &&);
+    Context &operator=(Context &&);
 
-    private:
+  private:
     bool active;
 };
+} // namespace sdl::video
 
 #endif // SDL_WRAPPER_SDL_VIDEO_CONTEXT_HH

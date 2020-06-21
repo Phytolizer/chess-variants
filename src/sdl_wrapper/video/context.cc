@@ -1,8 +1,10 @@
-#include "sdl_video_context.hh"
+#include "context.hh"
 #include <SDL2/SDL.h>
 #include <sdl_wrapper/sdl_exception.hh>
 
-SDLVideoContext::SDLVideoContext(SDLContext &sdl) : active(true)
+namespace sdl::video
+{
+Context::Context(::sdl::Context &sdl) : active(true)
 {
     int code = SDL_InitSubSystem(SDL_INIT_VIDEO);
     if (code != 0)
@@ -11,13 +13,13 @@ SDLVideoContext::SDLVideoContext(SDLContext &sdl) : active(true)
     }
 }
 
-SDLVideoContext::SDLVideoContext(SDLVideoContext &&other)
+Context::Context(Context &&other)
 {
     active = other.active;
     other.active = false;
 }
 
-SDLVideoContext &SDLVideoContext::operator=(SDLVideoContext &&other)
+Context &Context::operator=(Context &&other)
 {
     if (&other != this)
     {
@@ -26,3 +28,4 @@ SDLVideoContext &SDLVideoContext::operator=(SDLVideoContext &&other)
     }
     return *this;
 }
+} // namespace sdl
