@@ -14,7 +14,13 @@ using std::cerr;
  */
 int main()
 {
-    int code = SDL_Init(0);
+    // initialize SDL
+
+    /// SDL's init flags.
+    Uint32 flags = SDL_INIT_VIDEO;
+
+    /// The error code from SDL functions. I hate C
+    int code = SDL_Init(flags);
     if (code != 0) 
     {
         cerr << "Could not initialize SDL: " << SDL_GetError() << "\n";
