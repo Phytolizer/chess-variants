@@ -13,6 +13,14 @@ Context::Context(::sdl::Context &sdl) : active(true)
     }
 }
 
+Context::~Context()
+{
+    if (active)
+    {
+        SDL_QuitSubSystem(SDL_INIT_VIDEO);
+    }
+}
+
 Context::Context(Context &&other)
 {
     active = other.active;
@@ -28,4 +36,4 @@ Context &Context::operator=(Context &&other)
     }
     return *this;
 }
-} // namespace sdl
+} // namespace sdl::video

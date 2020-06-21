@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <sdl_wrapper/context.hh>
+#include <sdl_wrapper/video/window.hh>
 
 using std::cerr;
 
@@ -15,6 +16,7 @@ using std::cerr;
 int main()
 {
     sdl::Context sdlContext;
+    auto videoContext = sdlContext.initVideo();
 
     return 0;
 }
