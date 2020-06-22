@@ -16,11 +16,14 @@ using std::cerr;
  */
 int main()
 {
+    int width = 100;
+    int height = 100;
+
     sdl::Context sdlContext;
     sdl::video::Context videoContext = sdlContext.initVideo();
 
     sdl::video::Window window =
-        videoContext.createWindow("test window", 0, 0, 100, 100).positionCentered().resizable().build();
+        videoContext.createWindow("test window", 0, 0, width, height).positionCentered().resizable().build();
 
     sdl::render::Renderer renderer = window.createRenderer().accelerated().build();
 
@@ -34,6 +37,15 @@ int main()
             {
                 run = false;
                 break;
+            }
+            if (e.type == SDL_WINDOWEVENT)
+            {
+                SDL_WindowEvent we = e.window;
+                if (we.type == SDL_WINDOWEVENT_RESIZED)
+                {
+                    width = we.data1;
+                    height = we.data2;
+                }
             }
         }
 
