@@ -40,6 +40,7 @@ int main()
         }
 
         renderer.clear();
+        
         renderer.present();
     }
 
