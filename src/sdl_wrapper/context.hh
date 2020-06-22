@@ -36,9 +36,18 @@ class Context
     Context(Context &&);
     Context &operator=(Context &&);
 
+    /**
+     * @brief Initialize the SDL video subsystem
+     * 
+     * @return video::Context an object representing the active state of the subsystem
+     */
     video::Context initVideo();
 
   private:
+    /**
+     * @brief Describes whether this SDL context should quit SDL on destruction
+     * 
+     */
     bool active;
 };
 } // namespace sdl
