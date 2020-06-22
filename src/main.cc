@@ -17,9 +17,9 @@ using std::cerr;
 int main()
 {
     sdl::Context sdlContext;
-    auto videoContext = sdlContext.initVideo();
+    sdl::video::Context videoContext = sdlContext.initVideo();
 
-    auto window = videoContext.createWindow("test window", 0, 0, 100, 100).positionCentered().build();
+    sdl::video::Window window = videoContext.createWindow("test window", 0, 0, 100, 100).positionCentered().build();
 
     bool run = true;
     while (run)
