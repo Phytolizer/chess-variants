@@ -17,6 +17,9 @@ namespace sdl::video
 {
 
 class Context;
+/**
+ * @brief A memory-safe wrapper for the SDL_Window* datatype
+ */
 class Window
 {
   public:

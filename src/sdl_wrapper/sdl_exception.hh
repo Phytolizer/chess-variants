@@ -12,9 +12,7 @@
 #include <string_view>
 
 /**
- * @brief An exception for convenient reading of internal SDL errors.
- * Construct it with an optional message describing the context of the
- * error.
+ * @brief An exception for convenient reading of internal SDL errors
  */
 class SDLException : public std::runtime_error
 {

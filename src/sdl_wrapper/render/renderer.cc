@@ -3,6 +3,8 @@
 #include <sdl_wrapper/sdl_exception.hh>
 #include <sdl_wrapper/video/window.hh>
 
+using std::optional;
+
 namespace sdl::render
 {
 
@@ -84,19 +86,44 @@ void Renderer::clear()
     }
 }
 
-void Renderer::copy(const Texture &texture, SDL_Rect src, SDL_Rect dest)
+void Renderer::copy(const Texture &texture, optional<SDL_Rect> src, optional<SDL_Rect> dest)
 {
-    int code = SDL_RenderCopy(handle, texture.getHandle(), &src, &dest);
+    SDL_Rect *srcRect = nullptr;
+    if (src)
+    {
+        srcRect = &*src;
+    }
+    SDL_Rect *destRect = nullptr;
+    if (dest)
+    {
+        destRect = &*dest;
+    }
+    int code = SDL_RenderCopy(handle, texture.getHandle(), srcRect, destRect);
     if (code != 0)
     {
         throw SDLException("blitting to renderer");
     }
 }
 
-void Renderer::copy(const Texture &texture, SDL_Rect src, SDL_Rect dest, double angle, SDL_Point center,
-                    SDL_RendererFlip flip)
+void Renderer::copy(const Texture &texture, optional<SDL_Rect> src, optional<SDL_Rect> dest, double angle,
+                    optional<SDL_Point> center, SDL_RendererFlip flip)
 {
-    int code = SDL_RenderCopyEx(handle, texture.getHandle(), &src, &dest, angle, &center, flip);
+    SDL_Rect *srcRect = nullptr;
+    if (src)
+    {
+        srcRect = &*src;
+    }
+    SDL_Rect *destRect = nullptr;
+    if (dest)
+    {
+        destRect = &*dest;
+    }
+    SDL_Point *centerP = nullptr;
+    if (center)
+    {
+        centerP = &*center;
+    }
+    int code = SDL_RenderCopyEx(handle, texture.getHandle(), srcRect, destRect, angle, centerP, flip);
     if (code != 0)
     {
         throw SDLException("blitting to renderer");

@@ -13,6 +13,9 @@
 
 namespace sdl::video
 {
+/**
+ * @brief A builder for the sdl::video::Window class
+ */
 class WindowBuilder
 {
   public:

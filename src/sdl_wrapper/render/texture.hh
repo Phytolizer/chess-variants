@@ -9,14 +9,18 @@
 #define SDL_WRAPPER_RENDER_TEXTURE_HH
 
 #include <SDL2/SDL_render.h>
-#include <sdl_wrapper/render/weak_texture.hh>
 #include <sdl_wrapper/render/renderer.hh>
+#include <sdl_wrapper/render/weak_texture.hh>
 
 namespace sdl::render
 {
 
 class Renderer;
 
+/**
+ * @brief A memory-safe wrapper for the SDL_Texture* datatype
+ * 
+ */
 class Texture : public WeakTexture
 {
   public:

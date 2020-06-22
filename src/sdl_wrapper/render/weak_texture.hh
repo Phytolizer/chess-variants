@@ -12,6 +12,9 @@
 
 namespace sdl::render
 {
+/**
+ * @brief A non-owning wrapper for the SDL_Texture* datatype
+ */
 class WeakTexture
 {
   public:

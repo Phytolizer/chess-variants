@@ -19,6 +19,10 @@ class Context;
 namespace sdl::video
 {
 
+/**
+ * @brief An RAII wrapper for the SDL video subsystem
+ * 
+ */
 class Context
 {
   public:
