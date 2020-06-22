@@ -2,9 +2,11 @@
 /// @author Kyle Coffey
 
 #include <SDL2/SDL_events.h>
+#include <cmath>
 #include <iostream>
 #include <sdl_wrapper/context.hh>
 #include <sdl_wrapper/video/window.hh>
+
 
 using std::cerr;
 
@@ -57,7 +59,7 @@ int main()
                 }
             }
         }
-        
+
         renderer.setDrawColor({0x44, 0x44, 0x44, 0xff});
         renderer.clear();
         if (playSize > 8)
@@ -74,9 +76,9 @@ int main()
                     {
                         renderer.setDrawColor({0x77, 0x77, 0x77, 0xff});
                     }
-                    renderer.fillRect({static_cast<int>((width - playSize) / 2 + w * playSize / 8),
-                                       static_cast<int>((height - playSize) / 2 + h * playSize / 8),
-                                       static_cast<int>(playSize / 8), static_cast<int>(playSize / 8)});
+                    renderer.fillRect({static_cast<int>(ceil((width - playSize) / 2 + w * playSize / 8)),
+                                       static_cast<int>(ceil((height - playSize) / 2 + h * playSize / 8)),
+                                       static_cast<int>(ceil(playSize / 8)), static_cast<int>(ceil(playSize / 8))});
                 }
             }
         }
