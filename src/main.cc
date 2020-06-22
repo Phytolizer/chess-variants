@@ -18,7 +18,7 @@ int main()
 {
     int width = 720;
     int height = 480;
-    int playSize = 4*height/5;
+    int playSize = 4 * height / 5;
 
     sdl::Context sdlContext;
     sdl::video::Context videoContext = sdlContext.initVideo();
@@ -46,29 +46,44 @@ int main()
                 {
                     width = we.data1;
                     height = we.data2;
-                    if (width > height) { playSize = 4*height/5; } else { playSize = 4*width/5; }
+                    if (width > height)
+                    {
+                        playSize = 4 * height / 5;
+                    }
+                    else
+                    {
+                        playSize = 4 * width / 5;
+                    }
                 }
             }
         }
 
         renderer.clear();
         bool BGcolor = false;
-        for (int h = 0; h <= playSize; h += playSize/8) {
-            for (int w = 0; w <= playSize; w += playSize/8) {
-                if (BGcolor) {
-                    renderer.setDrawColor({0xbb, 0xbb, 0xbb, 0xff});
-                } else {
-                    renderer.setDrawColor({0x77, 0x77, 0x77, 0xff});
+        if (playSize > 8)
+        {
+            for (int h = 0; h <= playSize; h += playSize / 8)
+            {
+                for (int w = 0; w <= playSize; w += playSize / 8)
+                {
+                    if (BGcolor)
+                    {
+                        renderer.setDrawColor({0xbb, 0xbb, 0xbb, 0xff});
+                    }
+                    else
+                    {
+                        renderer.setDrawColor({0x77, 0x77, 0x77, 0xff});
+                    }
+                    BGcolor = !BGcolor;
+                    renderer.fillRect({(width - playSize) / 2 + w - playSize / 8, (height - playSize) / 2 + h - playSize / 8, w, h});
                 }
-                BGcolor = !BGcolor;
-                renderer.fillRect({(width-playSize)/2 + w-playSize/8,(height-playSize)/2 + h-playSize/8,w,h});
             }
+            renderer.setDrawColor({0x44, 0x44, 0x44, 0xff});
+            renderer.fillRect({-2, -2, width + 4, (height - playSize) / 2 + 2});
+            renderer.fillRect({-2, -2, (width - playSize) / 2 + 2, height + 4});
+            renderer.fillRect({(width - playSize) / 2 + playSize, -2, (width - playSize) / 2 + 2, height + 4});
+            renderer.fillRect({-2, (height - playSize) / 2 + playSize, width + 4, (height - playSize) / 2 + 2});
         }
-        renderer.setDrawColor({0x44, 0x44, 0x44, 0xff});
-        renderer.fillRect({0,0,width,(height-playSize)/2});
-        renderer.fillRect({0,0,(width-playSize)/2,height});
-        renderer.fillRect({(width-playSize)/2+playSize,0,(width-playSize)/2,height});
-        renderer.fillRect({0,(height-playSize)/2+playSize,width,(height-playSize)/2});
         renderer.present();
     }
 
