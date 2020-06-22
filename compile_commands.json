@@ -1,1 +1,62 @@
-C:/Users/kyle_coffey/Documents/chess-variants/build/compile_commands.json
+[
+{
+  "directory": "D:/chess-variants/build",
+  "command": "\"P:\\Program Files\\LLVM\\bin\\clang-cl.exe\"  /nologo -TP -I..\\src -I..\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 -std:c++17 /FoCMakeFiles\\chessvariants.dir\\src\\chess\\king.cc.obj /FdTARGET_COMPILE_PDB -c D:\\chess-variants\\src\\chess\\king.cc",
+  "file": "D:/chess-variants/src/chess/king.cc"
+},
+{
+  "directory": "D:/chess-variants/build",
+  "command": "\"P:\\Program Files\\LLVM\\bin\\clang-cl.exe\"  /nologo -TP -I..\\src -I..\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 -std:c++17 /FoCMakeFiles\\chessvariants.dir\\src\\chess\\piece.cc.obj /FdTARGET_COMPILE_PDB -c D:\\chess-variants\\src\\chess\\piece.cc",
+  "file": "D:/chess-variants/src/chess/piece.cc"
+},
+{
+  "directory": "D:/chess-variants/build",
+  "command": "\"P:\\Program Files\\LLVM\\bin\\clang-cl.exe\"  /nologo -TP -I..\\src -I..\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 -std:c++17 /FoCMakeFiles\\chessvariants.dir\\src\\main.cc.obj /FdTARGET_COMPILE_PDB -c D:\\chess-variants\\src\\main.cc",
+  "file": "D:/chess-variants/src/main.cc"
+},
+{
+  "directory": "D:/chess-variants/build",
+  "command": "\"P:\\Program Files\\LLVM\\bin\\clang-cl.exe\"  /nologo -TP -I..\\src -I..\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 -std:c++17 /FoCMakeFiles\\chessvariants.dir\\src\\sdl_wrapper\\context.cc.obj /FdTARGET_COMPILE_PDB -c D:\\chess-variants\\src\\sdl_wrapper\\context.cc",
+  "file": "D:/chess-variants/src/sdl_wrapper/context.cc"
+},
+{
+  "directory": "D:/chess-variants/build",
+  "command": "\"P:\\Program Files\\LLVM\\bin\\clang-cl.exe\"  /nologo -TP -I..\\src -I..\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 -std:c++17 /FoCMakeFiles\\chessvariants.dir\\src\\sdl_wrapper\\render\\renderer.cc.obj /FdTARGET_COMPILE_PDB -c D:\\chess-variants\\src\\sdl_wrapper\\render\\renderer.cc",
+  "file": "D:/chess-variants/src/sdl_wrapper/render/renderer.cc"
+},
+{
+  "directory": "D:/chess-variants/build",
+  "command": "\"P:\\Program Files\\LLVM\\bin\\clang-cl.exe\"  /nologo -TP -I..\\src -I..\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 -std:c++17 /FoCMakeFiles\\chessvariants.dir\\src\\sdl_wrapper\\render\\renderer_builder.cc.obj /FdTARGET_COMPILE_PDB -c D:\\chess-variants\\src\\sdl_wrapper\\render\\renderer_builder.cc",
+  "file": "D:/chess-variants/src/sdl_wrapper/render/renderer_builder.cc"
+},
+{
+  "directory": "D:/chess-variants/build",
+  "command": "\"P:\\Program Files\\LLVM\\bin\\clang-cl.exe\"  /nologo -TP -I..\\src -I..\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 -std:c++17 /FoCMakeFiles\\chessvariants.dir\\src\\sdl_wrapper\\render\\texture.cc.obj /FdTARGET_COMPILE_PDB -c D:\\chess-variants\\src\\sdl_wrapper\\render\\texture.cc",
+  "file": "D:/chess-variants/src/sdl_wrapper/render/texture.cc"
+},
+{
+  "directory": "D:/chess-variants/build",
+  "command": "\"P:\\Program Files\\LLVM\\bin\\clang-cl.exe\"  /nologo -TP -I..\\src -I..\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 -std:c++17 /FoCMakeFiles\\chessvariants.dir\\src\\sdl_wrapper\\render\\weak_texture.cc.obj /FdTARGET_COMPILE_PDB -c D:\\chess-variants\\src\\sdl_wrapper\\render\\weak_texture.cc",
+  "file": "D:/chess-variants/src/sdl_wrapper/render/weak_texture.cc"
+},
+{
+  "directory": "D:/chess-variants/build",
+  "command": "\"P:\\Program Files\\LLVM\\bin\\clang-cl.exe\"  /nologo -TP -I..\\src -I..\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 -std:c++17 /FoCMakeFiles\\chessvariants.dir\\src\\sdl_wrapper\\sdl_exception.cc.obj /FdTARGET_COMPILE_PDB -c D:\\chess-variants\\src\\sdl_wrapper\\sdl_exception.cc",
+  "file": "D:/chess-variants/src/sdl_wrapper/sdl_exception.cc"
+},
+{
+  "directory": "D:/chess-variants/build",
+  "command": "\"P:\\Program Files\\LLVM\\bin\\clang-cl.exe\"  /nologo -TP -I..\\src -I..\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 -std:c++17 /FoCMakeFiles\\chessvariants.dir\\src\\sdl_wrapper\\video\\context.cc.obj /FdTARGET_COMPILE_PDB -c D:\\chess-variants\\src\\sdl_wrapper\\video\\context.cc",
+  "file": "D:/chess-variants/src/sdl_wrapper/video/context.cc"
+},
+{
+  "directory": "D:/chess-variants/build",
+  "command": "\"P:\\Program Files\\LLVM\\bin\\clang-cl.exe\"  /nologo -TP -I..\\src -I..\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 -std:c++17 /FoCMakeFiles\\chessvariants.dir\\src\\sdl_wrapper\\video\\window.cc.obj /FdTARGET_COMPILE_PDB -c D:\\chess-variants\\src\\sdl_wrapper\\video\\window.cc",
+  "file": "D:/chess-variants/src/sdl_wrapper/video/window.cc"
+},
+{
+  "directory": "D:/chess-variants/build",
+  "command": "\"P:\\Program Files\\LLVM\\bin\\clang-cl.exe\"  /nologo -TP -I..\\src -I..\\include /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd /W4 -std:c++17 /FoCMakeFiles\\chessvariants.dir\\src\\sdl_wrapper\\video\\window_builder.cc.obj /FdTARGET_COMPILE_PDB -c D:\\chess-variants\\src\\sdl_wrapper\\video\\window_builder.cc",
+  "file": "D:/chess-variants/src/sdl_wrapper/video/window_builder.cc"
+}
+]

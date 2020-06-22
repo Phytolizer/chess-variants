@@ -18,7 +18,7 @@ int main()
 {
     int width = 720;
     int height = 480;
-    int playSize = 4 * height / 5;
+    float playSize = 4 * height / 5;
 
     sdl::Context sdlContext;
     sdl::video::Context videoContext = sdlContext.initVideo();
@@ -57,16 +57,16 @@ int main()
                 }
             }
         }
-
+        
+        renderer.setDrawColor({0x44, 0x44, 0x44, 0xff});
         renderer.clear();
-        bool BGcolor = false;
         if (playSize > 8)
         {
-            for (int h = 0; h <= playSize; h += playSize / 8)
+            for (int h = 0; h < 8; h++)
             {
-                for (int w = 0; w <= playSize; w += playSize / 8)
+                for (int w = 0; w < 8; w++)
                 {
-                    if (BGcolor)
+                    if (h % 2 == w % 2)
                     {
                         renderer.setDrawColor({0xbb, 0xbb, 0xbb, 0xff});
                     }
@@ -74,15 +74,11 @@ int main()
                     {
                         renderer.setDrawColor({0x77, 0x77, 0x77, 0xff});
                     }
-                    BGcolor = !BGcolor;
-                    renderer.fillRect({(width - playSize) / 2 + w - playSize / 8, (height - playSize) / 2 + h - playSize / 8, w, h});
+                    renderer.fillRect({static_cast<int>((width - playSize) / 2 + w * playSize / 8),
+                                       static_cast<int>((height - playSize) / 2 + h * playSize / 8),
+                                       static_cast<int>(playSize / 8), static_cast<int>(playSize / 8)});
                 }
             }
-            renderer.setDrawColor({0x44, 0x44, 0x44, 0xff});
-            renderer.fillRect({-2, -2, width + 4, (height - playSize) / 2 + 2});
-            renderer.fillRect({-2, -2, (width - playSize) / 2 + 2, height + 4});
-            renderer.fillRect({(width - playSize) / 2 + playSize, -2, (width - playSize) / 2 + 2, height + 4});
-            renderer.fillRect({-2, (height - playSize) / 2 + playSize, width + 4, (height - playSize) / 2 + 2});
         }
         renderer.present();
     }
