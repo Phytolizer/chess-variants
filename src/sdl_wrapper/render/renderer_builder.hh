@@ -14,7 +14,7 @@ namespace sdl::render
 {
 /**
  * @brief A builder for the sdl::render::Renderer class
- * 
+ *
  */
 class RendererBuilder
 {

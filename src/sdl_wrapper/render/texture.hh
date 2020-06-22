@@ -19,7 +19,7 @@ class Renderer;
 
 /**
  * @brief A memory-safe wrapper for the SDL_Texture* datatype
- * 
+ *
  */
 class Texture : public WeakTexture
 {
