@@ -8,6 +8,7 @@
 #ifndef SDL_WRAPPER_VIDEO_WINDOW_HH
 #define SDL_WRAPPER_VIDEO_WINDOW_HH
 
+#include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL_video.h>
 #include <sdl_wrapper/render/renderer.hh>
 #include <sdl_wrapper/render/renderer_builder.hh>
@@ -37,6 +38,8 @@ class Window
     Window(Window &&other);
     Window &operator=(Window &&other);
     SDL_Window *getHandle() const;
+
+    Uint32 getPixelFormat() const;
 
     render::RendererBuilder createRenderer();
 

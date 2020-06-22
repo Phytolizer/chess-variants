@@ -11,6 +11,7 @@
 #include <SDL2/SDL_render.h>
 #include <sdl_wrapper/render/renderer.hh>
 #include <sdl_wrapper/render/weak_texture.hh>
+#include <sdl_wrapper/surface/surface.hh>
 
 namespace sdl::render
 {
@@ -25,6 +26,7 @@ class Texture : public WeakTexture
 {
   public:
     Texture(Renderer &renderer, Uint32 pixelFormat, int access, int w, int h);
+    Texture(Renderer &renderer, surface::Surface &surface);
 
     ~Texture();
 

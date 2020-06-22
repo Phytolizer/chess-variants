@@ -1,4 +1,5 @@
 #include "window.hh"
+#include "SDL2/SDL_video.h"
 #include <sdl_wrapper/sdl_exception.hh>
 
 namespace sdl::video
@@ -43,6 +44,10 @@ Window &Window::operator=(Window &&other)
 SDL_Window *Window::getHandle() const
 {
     return handle;
+}
+Uint32 Window::getPixelFormat() const
+{
+    return SDL_GetWindowPixelFormat(handle);
 }
 render::RendererBuilder Window::createRenderer()
 {
