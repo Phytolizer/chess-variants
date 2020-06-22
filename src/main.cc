@@ -2,12 +2,20 @@
 /// @author Kyle Coffey
 
 #include <SDL2/SDL_events.h>
+#include <SDL2/SDL_stdinc.h>
 #include <cmath>
 #include <iostream>
 #include <sdl_wrapper/context.hh>
+#include <sdl_wrapper/render/renderer.hh>
+#include <sdl_wrapper/render/texture.hh>
 #include <sdl_wrapper/video/window.hh>
 
 using std::cerr;
+
+sdl::render::Texture drawChessBoard(sdl::render::Renderer &renderer, Uint32 pixelFormat)
+{
+
+}
 
 /**
  * @brief The main function.
@@ -62,6 +70,8 @@ int main()
 
         renderer.setDrawColor({0x44, 0x44, 0x44, 0xff});
         renderer.clear();
+
+        drawChessBoard(renderer, window.getPixelFormat());
         if (playSize > 8)
         {
             for (int h = 0; h < gridSize; h++)
