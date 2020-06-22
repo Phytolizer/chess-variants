@@ -36,4 +36,9 @@ Context &Context::operator=(Context &&other)
     }
     return *this;
 }
+
+WindowBuilder Context::createWindow(std::string_view title, int x, int y, int w, int h)
+{
+    return WindowBuilder(*this, title, x, y, w, h);
+}
 } // namespace sdl::video

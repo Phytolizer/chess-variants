@@ -8,6 +8,8 @@
 #ifndef SDL_WRAPPER_SDL_VIDEO_CONTEXT_HH
 #define SDL_WRAPPER_SDL_VIDEO_CONTEXT_HH
 
+#include <sdl_wrapper/video/window_builder.hh>
+
 namespace sdl
 {
 // predeclaration, prevent recursive includes
@@ -30,6 +32,8 @@ class Context
     Context &operator=(const Context &) = delete;
     Context(Context &&);
     Context &operator=(Context &&);
+
+    WindowBuilder createWindow(std::string_view title, int x, int y, int w, int h);
 
   private:
     bool active;
