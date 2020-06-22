@@ -1,10 +1,10 @@
 /// @file main.cc
 /// @author Kyle Coffey
 
+#include <SDL2/SDL_events.h>
 #include <iostream>
 #include <sdl_wrapper/context.hh>
 #include <sdl_wrapper/video/window.hh>
-#include <SDL2/SDL_events.h>
 
 using std::cerr;
 
@@ -32,7 +32,7 @@ int main()
                 run = false;
                 break;
             }
-        }       
+        }
     }
 
     return 0;
