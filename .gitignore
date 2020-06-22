@@ -2,3 +2,5 @@
 /build
 /doc
 /.clangd
+/.idea
+/cmake-build-debug
