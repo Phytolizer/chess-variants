@@ -1,6 +1,8 @@
 /// @file main.cc
 /// @author Kyle Coffey
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <SDL2/SDL_events.h>
 #include <iostream>
 #include <sdl_wrapper/context.hh>
@@ -19,7 +21,8 @@ int main()
     sdl::Context sdlContext;
     sdl::video::Context videoContext = sdlContext.initVideo();
 
-    sdl::video::Window window = videoContext.createWindow("test window", 0, 0, 100, 100).positionCentered().resizable().build();
+    sdl::video::Window window =
+        videoContext.createWindow("test window", 0, 0, 100, 100).positionCentered().resizable().build();
 
     sdl::render::Renderer renderer = window.createRenderer().accelerated().build();
 
