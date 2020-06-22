@@ -1,8 +1,6 @@
 /// @file main.cc
 /// @author Kyle Coffey
 
-#define _CRT_SECURE_NO_WARNINGS
-
 #include <SDL2/SDL_events.h>
 #include <iostream>
 #include <sdl_wrapper/context.hh>
@@ -40,7 +38,9 @@ int main()
         }
 
         renderer.clear();
-        
+
+        // TODO code goes here
+
         renderer.present();
     }
 
