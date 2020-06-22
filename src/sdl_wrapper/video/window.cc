@@ -40,4 +40,12 @@ Window &Window::operator=(Window &&other)
     }
     return *this;
 }
+SDL_Window *Window::getHandle() const
+{
+    return handle;
+}
+render::RendererBuilder Window::createRenderer()
+{
+    return render::RendererBuilder(*this);
+}
 } // namespace sdl::video

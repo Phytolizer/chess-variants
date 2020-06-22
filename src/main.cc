@@ -19,7 +19,9 @@ int main()
     sdl::Context sdlContext;
     sdl::video::Context videoContext = sdlContext.initVideo();
 
-    sdl::video::Window window = videoContext.createWindow("test window", 0, 0, 100, 100).positionCentered().build();
+    sdl::video::Window window = videoContext.createWindow("test window", 0, 0, 100, 100).positionCentered().resizable().build();
+
+    sdl::render::Renderer renderer = window.createRenderer().accelerated().build();
 
     bool run = true;
     while (run)
@@ -33,6 +35,9 @@ int main()
                 break;
             }
         }
+
+        renderer.clear();
+        renderer.present();
     }
 
     return 0;

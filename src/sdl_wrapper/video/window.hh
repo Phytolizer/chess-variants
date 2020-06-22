@@ -9,6 +9,8 @@
 #define SDL_WRAPPER_VIDEO_WINDOW_HH
 
 #include <SDL2/SDL_video.h>
+#include <sdl_wrapper/render/renderer.hh>
+#include <sdl_wrapper/render/renderer_builder.hh>
 #include <string_view>
 
 namespace sdl::video
@@ -31,6 +33,9 @@ class Window
 
     Window(Window &&other);
     Window &operator=(Window &&other);
+    SDL_Window *getHandle() const;
+
+    render::RendererBuilder createRenderer();
 
   private:
     SDL_Window *handle;
