@@ -130,7 +130,88 @@ void Renderer::copy(const Texture &texture, optional<SDL_Rect> src, optional<SDL
     }
 }
 
-void Renderer::present()
+void Renderer::setDrawColor(SDL_Color dc)
+{
+    int code = SDL_SetRenderDrawColor(handle, dc.r, dc.g, dc.b, dc.a);
+    if (code != 0)
+    {
+        throw SDLException("setting renderer draw color");
+    }
+}
+
+void Renderer::drawLine(SDL_Point p1, SDL_Point p2)
+{
+    int code = SDL_RenderDrawLine(handle, p1.x, p1.y, p2.x, p2.y);
+    if (code != 0)
+    {
+        throw SDLException("drawing line to renderer");
+    }
+}
+
+void Renderer::drawLines(const std::vector<SDL_Point> &vertices)
+{
+    int code = SDL_RenderDrawLines(handle, vertices.data(), vertices.size());
+    if (code != 0)
+    {
+        throw SDLException("drawing lines to renderer");
+    }
+}
+
+void Renderer::drawPoint(SDL_Point p)
+{
+    int code = SDL_RenderDrawPoint(handle, p.x, p.y);
+    if (code != 0)
+    {
+        throw SDLException("drawing point to renderer");
+    }
+}
+
+void Renderer::drawPoints(const std::vector<SDL_Point> &points)
+{
+    int code = SDL_RenderDrawPoints(handle, points.data(), points.size());
+    if (code != 0)
+    {
+        throw SDLException("drawing points to renderer");
+    }
+}
+
+void Renderer::drawRect(SDL_Rect r)
+{
+    int code = SDL_RenderDrawRect(handle, &r);
+    if (code != 0)
+    {
+        throw SDLException("drawing rect to renderer");
+    }
+}
+
+void Renderer::drawRects(const std::vector<SDL_Rect> &rects)
+{
+    int code = SDL_RenderDrawRects(handle, rects.data(), rects.size());
+    if (code != 0)
+    {
+        throw SDLException("drawing rects to renderer");
+    }
+}
+
+void Renderer::fillRect(SDL_Rect r)
+{
+    int code = SDL_RenderFillRect(handle, &r);
+    if (code != 0)
+    {
+        throw SDLException("filling rect to renderer");
+    }
+}
+
+void Renderer::fillRects(const std::vector<SDL_Rect> &rects)
+{
+    int code = SDL_RenderFillRects(handle, rects.data(), rects.size());
+    if (code != 0)
+    {
+        throw SDLException("filling rects to renderer");
+    }
+}
+
+void Renderer::present() noexcept
 {
     SDL_RenderPresent(handle);
 }

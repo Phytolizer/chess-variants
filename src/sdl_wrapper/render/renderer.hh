@@ -10,6 +10,7 @@
 
 #include <SDL2/SDL_render.h>
 #include <optional>
+#include <vector>
 #include <sdl_wrapper/render/weak_texture.hh>
 
 namespace sdl::video
@@ -103,9 +104,85 @@ class Renderer
      * to copy to the entire render target
      */
     void copy(const Texture &texture, std::optional<SDL_Rect> src, std::optional<SDL_Rect> dest);
+    /**
+     * @brief Copy a texture to the renderer's target
+     *
+     * @param texture the texture to copy
+     * @param src the portion of the texture to copy, or std::nullopt for the entire texture
+     * @param dest the portion of the target to copy to, or std::nullopt for the entire target
+     * @param angle the amount to rotate the texture by, in degrees clockwise
+     * @param center the pivot to rotate around, or std::nullopt for the texture's geometric
+     * center
+     * @param flip the flipping action to perform on the texture
+     */
     void copy(const Texture &texture, std::optional<SDL_Rect> src, std::optional<SDL_Rect> dest, double angle,
               std::optional<SDL_Point> center, SDL_RendererFlip flip);
-    void present();
+    /**
+     * @brief Set the drawing color for the renderer
+     *
+     * @param dc the draw color
+     */
+    void setDrawColor(SDL_Color dc);
+    /**
+     * @brief Draw a line on the target from point `p1` to `p2`
+     *
+     * @param p1 the point to start the line at
+     * @param p2 the point where the line ends
+     */
+    void drawLine(SDL_Point p1, SDL_Point p2);
+    /**
+     * @brief Connect the dots to form lines. Each point will have a line drawn between
+     * itself and the next point in the vector.
+     * 
+     * @param vertices the points to connect
+     */
+    void drawLines(const std::vector<SDL_Point> &vertices);
+    /**
+     * @brief Draw a point to the target. Typically this draws a single
+     * pixel.
+     * 
+     * @param p the point to draw
+     */
+    void drawPoint(SDL_Point p);
+    /**
+     * @brief Draw all points to the target. See Renderer::drawPoint.
+     * 
+     * @param points the points to draw
+     */
+    void drawPoints(const std::vector<SDL_Point> &points);
+    /**
+     * @brief Draw the outline of the rectangle defined by `r` to the target.
+     * If you want a filled rectangle, see Renderer::fillRect.
+     * 
+     * @param r the rectangle to draw
+     */
+    void drawRect(SDL_Rect r);
+    /**
+     * @brief Draw all rectangles contained in `rects` to the target.
+     * See Renderer::drawRect.
+     * 
+     * @param rects the rectangles to draw
+     */
+    void drawRects(const std::vector<SDL_Rect> &rects);
+    /**
+     * @brief Draw the rectangle defined by `r` filled in with the draw color
+     * to the target. If you want just the outline, see Renderer::drawRect.
+     * 
+     * @param r the rectangle to fill
+     */
+    void fillRect(SDL_Rect r);
+    /**
+     * @brief Draw all rectangles contained in `rects`, filled in, to the target.
+     * See Renderer::fillRect.
+     * 
+     * @param rects the rectangles to draw
+     */
+    void fillRects(const std::vector<SDL_Rect> &rects);
+    /**
+     * @brief Push the renderer's changes to the target
+     *
+     */
+    void present() noexcept;
 
     SDL_Renderer *getHandle() const;
 
