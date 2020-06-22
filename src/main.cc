@@ -16,8 +16,9 @@ using std::cerr;
  */
 int main()
 {
-    int width = 100;
-    int height = 100;
+    int width = 720;
+    int height = 480;
+    int playSize = 4*height/5;
 
     sdl::Context sdlContext;
     sdl::video::Context videoContext = sdlContext.initVideo();
@@ -41,18 +42,33 @@ int main()
             if (e.type == SDL_WINDOWEVENT)
             {
                 SDL_WindowEvent we = e.window;
-                if (we.type == SDL_WINDOWEVENT_RESIZED)
+                if (we.event == SDL_WINDOWEVENT_SIZE_CHANGED)
                 {
                     width = we.data1;
                     height = we.data2;
+                    if (width > height) { playSize = 4*height/5; } else { playSize = 4*width/5; }
                 }
             }
         }
 
         renderer.clear();
-
-        // TODO code goes here
-
+        bool BGcolor = false;
+        for (int h = 0; h <= playSize; h += playSize/8) {
+            for (int w = 0; w <= playSize; w += playSize/8) {
+                if (BGcolor) {
+                    renderer.setDrawColor({0xbb, 0xbb, 0xbb, 0xff});
+                } else {
+                    renderer.setDrawColor({0x77, 0x77, 0x77, 0xff});
+                }
+                BGcolor = !BGcolor;
+                renderer.fillRect({(width-playSize)/2 + w-playSize/8,(height-playSize)/2 + h-playSize/8,w,h});
+            }
+        }
+        renderer.setDrawColor({0x44, 0x44, 0x44, 0xff});
+        renderer.fillRect({0,0,width,(height-playSize)/2});
+        renderer.fillRect({0,0,(width-playSize)/2,height});
+        renderer.fillRect({(width-playSize)/2+playSize,0,(width-playSize)/2,height});
+        renderer.fillRect({0,(height-playSize)/2+playSize,width,(height-playSize)/2});
         renderer.present();
     }
 
