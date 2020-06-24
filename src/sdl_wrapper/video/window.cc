@@ -4,18 +4,21 @@
 
 namespace sdl::video
 {
-Window::Window(__attribute__((unused)) video::Context &context, std::string_view title, int x, int y, int w, int h,
-               Uint32 flags)
+Window::Window(video::Context &, std::string_view title, int x, int y, int w, int h, Uint32 flags)
+    : WeakWindow(SDL_CreateWindow(title.data(), x, y, w, h, flags))
 {
-    handle = SDL_CreateWindow(title.data(), x, y, w, h, flags);
     if (handle == nullptr)
     {
         throw SDLException("creating window");
     }
 }
 
-Window::Window(SDL_Window *handle) : handle(handle)
+Window::Window(const void *nativeData) : WeakWindow(SDL_CreateWindowFrom(nativeData))
 {
+    if (handle == nullptr)
+    {
+        throw SDLException("creating window from native window");
+    }
 }
 
 Window::~Window()
@@ -26,9 +29,8 @@ Window::~Window()
     }
 }
 
-Window::Window(Window &&other)
+Window::Window(Window &&other) : WeakWindow(other.handle)
 {
-    handle = other.handle;
     other.handle = nullptr;
 }
 
@@ -40,17 +42,5 @@ Window &Window::operator=(Window &&other)
         other.handle = nullptr;
     }
     return *this;
-}
-SDL_Window *Window::getHandle() const
-{
-    return handle;
-}
-Uint32 Window::getPixelFormat() const
-{
-    return SDL_GetWindowPixelFormat(handle);
-}
-render::RendererBuilder Window::createRenderer()
-{
-    return render::RendererBuilder(*this);
 }
 } // namespace sdl::video

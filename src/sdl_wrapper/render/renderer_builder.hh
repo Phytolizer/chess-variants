@@ -10,6 +10,11 @@
 
 #include <sdl_wrapper/render/renderer.hh>
 
+namespace sdl::video
+{
+class WeakWindow;
+}
+
 namespace sdl::render
 {
 /**
@@ -19,7 +24,7 @@ namespace sdl::render
 class RendererBuilder
 {
   public:
-    RendererBuilder(video::Window &window);
+    RendererBuilder(video::WeakWindow &window);
 
     Renderer build();
 

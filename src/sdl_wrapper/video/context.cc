@@ -1,10 +1,11 @@
 #include "context.hh"
 #include <SDL2/SDL.h>
 #include <sdl_wrapper/sdl_exception.hh>
+#include <sdl_wrapper/video/video.hh>
 
 namespace sdl::video
 {
-Context::Context(__attribute__((unused))::sdl::Context &sdl) : active(true)
+Context::Context(::sdl::Context &) : active(true), onQuit([]() { SDL_QuitSubSystem(SDL_INIT_VIDEO); })
 {
     int code = SDL_InitSubSystem(SDL_INIT_VIDEO);
     if (code != 0)
@@ -12,12 +13,16 @@ Context::Context(__attribute__((unused))::sdl::Context &sdl) : active(true)
         throw SDLException("initializing SDL video subsystem");
     }
 }
+Context::Context(::sdl::Context &, std::string_view driverName) : active(true), onQuit(SDL_VideoQuit)
+{
+    init({driverName});
+}
 
 Context::~Context()
 {
     if (active)
     {
-        SDL_QuitSubSystem(SDL_INIT_VIDEO);
+        onQuit();
     }
 }
 

@@ -26,7 +26,8 @@ namespace sdl::video
 class Context
 {
   public:
-    Context(__attribute__((unused))::sdl::Context &parent);
+    Context(::sdl::Context &);
+    Context(::sdl::Context &, std::string_view driverName);
 
     ~Context();
 
@@ -41,6 +42,7 @@ class Context
 
   private:
     bool active;
+    void (*onQuit)();
 };
 } // namespace sdl::video
 

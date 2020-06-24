@@ -5,29 +5,21 @@
 namespace sdl::surface
 {
 Surface::Surface(int width, int height, int depth, Uint32 rmask, Uint32 gmask, Uint32 bmask, Uint32 amask)
+    : WeakSurface(SDL_CreateRGBSurface(0, width, height, depth, rmask, gmask, bmask, amask))
 {
-    handle = SDL_CreateRGBSurface(0, width, height, depth, rmask, gmask, bmask, amask);
     if (handle == nullptr)
     {
         throw SDLException("creating surface");
     }
 }
 Surface::Surface(int width, int height, int depth, Uint32 pixelFormat)
+    : WeakSurface(SDL_CreateRGBSurfaceWithFormat(0, width, height, depth, pixelFormat))
 {
-    handle = SDL_CreateRGBSurfaceWithFormat(0, width, height, depth, pixelFormat);
     if (handle == nullptr)
     {
         throw SDLException("creating surface");
     }
 }
-Surface::Surface(SDL_Surface *handle) : handle(handle)
-{
-}
-SDL_Surface *Surface::getHandle() const
-{
-    return handle;
-}
-
 Surface::~Surface()
 {
     if (handle != nullptr)
@@ -36,9 +28,8 @@ Surface::~Surface()
     }
 }
 
-Surface::Surface(Surface &&other)
+Surface::Surface(Surface &&other) : WeakSurface(other.handle)
 {
-    handle = other.handle;
     other.handle = nullptr;
 }
 

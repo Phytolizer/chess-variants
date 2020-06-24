@@ -9,24 +9,22 @@
 #define SDL_WRAPPER_VIDEO_WINDOW_HH
 
 #include <SDL2/SDL_stdinc.h>
-#include <SDL2/SDL_video.h>
-#include <sdl_wrapper/render/renderer.hh>
-#include <sdl_wrapper/render/renderer_builder.hh>
+#include <sdl_wrapper/video/weak_window.hh>
 #include <string_view>
 
 namespace sdl::video
 {
 
 class Context;
+
 /**
  * @brief A memory-safe wrapper for the SDL_Window* datatype
  */
-class Window
+class Window : public WeakWindow
 {
   public:
-    Window(__attribute__((unused)) video::Context &context, std::string_view title, int x, int y, int w, int h,
-           Uint32 flags);
-    Window(SDL_Window *handle) __attribute__((nonnull(2)));
+    Window(video::Context &, std::string_view title, int x, int y, int w, int h, Uint32 flags);
+    Window(const void *nativeData);
 
     ~Window();
 
@@ -37,14 +35,8 @@ class Window
 
     Window(Window &&other);
     Window &operator=(Window &&other);
-    SDL_Window *getHandle() const;
-
-    Uint32 getPixelFormat() const;
-
-    render::RendererBuilder createRenderer();
 
   private:
-    SDL_Window *handle;
 };
 } // namespace sdl::video
 
