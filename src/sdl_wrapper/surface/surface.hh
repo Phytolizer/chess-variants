@@ -15,23 +15,29 @@
 /**
  * @namespace sdl::surface
  * @brief Contains most functions and classes based on SDL_surface.h
- * 
+ *
  */
 namespace sdl::surface
 {
-  /**
-   * @brief A structured collection of pixels used in software rendering. Hardware rendering is not
-   * done with surfaces.
-   *
-   * @see sdl::render::Renderer
-   * 
-   */
+/**
+ * @brief A structured collection of pixels used in software rendering. Hardware rendering is not
+ * done with surfaces.
+ *
+ * @see sdl::render::Renderer
+ *
+ */
 class Surface : public WeakSurface
 {
   public:
     /**
-     * @brief Construct a new Surface with a specific width, height, bit depth, and color mask.
+     * @brief Construct a new Surface from an existing SDL handle.
      * 
+     * @param handle the handle
+     */
+    Surface(SDL_Surface *handle);
+    /**
+     * @brief Construct a new Surface with a specific width, height, bit depth, and color mask.
+     *
      * @param width the surface's width in pixels
      * @param height the surface's height in pixels
      * @param depth the number of bits per pixel
@@ -43,7 +49,7 @@ class Surface : public WeakSurface
     Surface(int width, int height, int depth, Uint32 rmask, Uint32 gmask, Uint32 bmask, Uint32 amask);
     /**
      * @brief Construct a new Surface with a specific width, height, depth, and pixel format.
-     * 
+     *
      * @param width the surface's width in pixels
      * @param height the surface's height in pixels
      * @param depth the number of bits per pixel
@@ -59,18 +65,36 @@ class Surface : public WeakSurface
 
     /**
      * @brief move constructor
-     * 
+     *
      * @param other the object to move from
      */
     Surface(Surface &&other);
     /**
      * @brief move assignment operator
-     * 
+     *
      * @param other the object to move from
      * @return Surface& the object that was moved to
      */
     Surface &operator=(Surface &&other);
 };
+
+// free functions
+
+/**
+ * @brief Convert pixels from one format to another.
+ *
+ * @param width the width in pixels of the block
+ * @param height the height in pixels of the block
+ * @param srcFormat the pixel format of the source
+ * @param srcPitch the pitch (bit depth) of the source
+ * @param src the source pixels
+ * @param dstFormat the pixel format of the destination
+ * @param dstPitch the pitch (bit depth) of the destination
+ * @param dst the destination
+ */
+void convertPixels(int width, int height, Uint32 srcFormat, int srcPitch, const void *src, Uint32 dstFormat,
+                   int dstPitch, void *dst);
+
 } // namespace sdl::surface
 
 #endif // SDL_WRAPPER_SURFACE_SURFACE_HH

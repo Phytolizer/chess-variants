@@ -4,6 +4,9 @@
 
 namespace sdl::surface
 {
+Surface::Surface(SDL_Surface *handle) : WeakSurface(handle)
+{
+}
 Surface::Surface(int width, int height, int depth, Uint32 rmask, Uint32 gmask, Uint32 bmask, Uint32 amask)
     : WeakSurface(SDL_CreateRGBSurface(0, width, height, depth, rmask, gmask, bmask, amask))
 {
@@ -41,5 +44,15 @@ Surface &Surface::operator=(Surface &&other)
         other.handle = nullptr;
     }
     return *this;
+}
+
+void convertPixels(int width, int height, Uint32 srcFormat, int srcPitch, const void *src, Uint32 dstFormat,
+                   int dstPitch, void *dst)
+{
+    int code = SDL_ConvertPixels(width, height, srcFormat, src, srcPitch, dstFormat, dst, dstPitch);
+    if (code != 0)
+    {
+        throw SDLException("converting between pixel formats");
+    }
 }
 } // namespace sdl::surface
