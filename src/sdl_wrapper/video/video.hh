@@ -5,6 +5,11 @@
  * @date 2020-06-23
  */
 
+/**
+ * @dir video
+ * This directory contains all `sdl::video` classes and functions.
+ */
+
 #ifndef SDL_WRAPPER_VIDEO_VIDEO_HH
 #define SDL_WRAPPER_VIDEO_VIDEO_HH
 
@@ -14,7 +19,12 @@
 #include <sdl_wrapper/video/window.hh>
 #include <string>
 
-
+/**
+ * @namespace sdl::video
+ * @brief This namespace roughly corresponds to SDL_video.h in that it defines
+ * most functions in that file.
+ *
+ */
 namespace sdl::video
 {
 /**
@@ -28,6 +38,13 @@ struct Dpi
     float vert;
 };
 
+/**
+ * @brief An abstraction over a single display on the host system. Has an index that is
+ * used for all of its methods.
+ *
+ * @see video::getNumDisplays()
+ *
+ */
 struct Display
 {
     int index;
@@ -177,6 +194,14 @@ void init(std::optional<std::string_view> driverName);
  */
 void quit() noexcept;
 
+/**
+ * @brief Create a Window and Renderer in tandem. The Renderer is owned by the Window.
+ *
+ * @param width the width of the window's client area
+ * @param height the height of the window's client area
+ * @param windowFlags the flags to use for the window
+ * @return std::pair<Window, render::Renderer> the window and renderer, use std::tie or std::get to access
+ */
 std::pair<Window, render::Renderer> createWindowAndRenderer(int width, int height, Uint32 windowFlags);
 } // namespace sdl::video
 

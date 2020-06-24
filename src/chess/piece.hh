@@ -8,12 +8,19 @@
 #ifndef CHESS_PIECE_HH
 #define CHESS_PIECE_HH
 
-#include <SDL2/SDL_video.h>
 #include <SDL2/SDL_rect.h>
+#include <SDL2/SDL_video.h>
 #include <vector>
+
 
 namespace chess
 {
+/**
+ * @brief An abstract chess piece. Pieces have a way to display themselves, a crown (if they are the
+ * piece that needs to be checkmated), a selected state, a set of valid moves, and a color (typically
+ * white or black).
+ *
+ */
 class Piece
 {
   public:

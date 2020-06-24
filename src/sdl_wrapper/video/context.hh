@@ -1,5 +1,5 @@
 /**
- * @file sdl_video_context.hh
+ * @file context.hh
  * @author Kyle Coffey (kylecoffey1999@gmail.com)
  * @brief Contains a wrapper for the SDL video subsystem
  * @date 2020-06-21

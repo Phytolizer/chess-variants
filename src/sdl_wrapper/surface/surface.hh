@@ -14,6 +14,13 @@
 
 namespace sdl::surface
 {
+  /**
+   * @brief A structured collection of pixels used in software rendering. Hardware rendering is not
+   * done with surfaces.
+   *
+   * @see sdl::render::Renderer
+   * 
+   */
 class Surface : public WeakSurface
 {
   public:

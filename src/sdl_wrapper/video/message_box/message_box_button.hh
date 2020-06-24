@@ -13,6 +13,10 @@
 
 namespace sdl::video::message_box
 {
+/**
+ * @brief A builder for the SDL_MessageBoxButton struct. Has flags, a user-defined ID, and some text.
+ *
+ */
 class MessageBoxButton
 {
   public:

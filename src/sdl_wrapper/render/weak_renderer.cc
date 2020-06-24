@@ -1,8 +1,6 @@
 #include "weak_renderer.hh"
-#include <sdl_wrapper/sdl_exception.hh>
 #include <sdl_wrapper/render/texture.hh>
-
-using std::optional;
+#include <sdl_wrapper/sdl_exception.hh>
 
 namespace sdl::render
 {
@@ -55,7 +53,7 @@ void WeakRenderer::clear()
     }
 }
 
-void WeakRenderer::copy(const Texture &texture, optional<SDL_Rect> src, optional<SDL_Rect> dest)
+void WeakRenderer::copy(const Texture &texture, std::optional<SDL_Rect> src, std::optional<SDL_Rect> dest)
 {
     SDL_Rect *srcRect = nullptr;
     if (src)
@@ -74,8 +72,8 @@ void WeakRenderer::copy(const Texture &texture, optional<SDL_Rect> src, optional
     }
 }
 
-void WeakRenderer::copy(const Texture &texture, optional<SDL_Rect> src, optional<SDL_Rect> dest, double angle,
-                        optional<SDL_Point> center, SDL_RendererFlip flip)
+void WeakRenderer::copy(const Texture &texture, std::optional<SDL_Rect> src, std::optional<SDL_Rect> dest, double angle,
+                        std::optional<SDL_Point> center, SDL_RendererFlip flip)
 {
     SDL_Rect *srcRect = nullptr;
     if (src)
@@ -183,5 +181,27 @@ void WeakRenderer::fillRects(const std::vector<SDL_Rect> &rects)
 void WeakRenderer::present() noexcept
 {
     SDL_RenderPresent(handle);
+}
+
+SDL_RendererInfo WeakRenderer::getInfo() const
+{
+    SDL_RendererInfo info;
+    int code = SDL_GetRendererInfo(handle, &info);
+    if (code != 0)
+    {
+        throw SDLException("getting renderer info");
+    }
+    return info;
+}
+
+SDL_Rect WeakRenderer::getOutputSize() const
+{
+    SDL_Rect outputSize;
+    int code = SDL_GetRendererOutputSize(handle, &outputSize.w, &outputSize.h);
+    if (code != 0)
+    {
+        throw SDLException("getting renderer output size");
+    }
+    return outputSize;
 }
 } // namespace sdl::render

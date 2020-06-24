@@ -12,6 +12,13 @@
 
 using std::cerr;
 
+/**
+ * @brief Draw the chess board for the game. It is drawn to a texture which is then returned.
+ * 
+ * @param renderer a renderer that is able to target textures
+ * @param pixelFormat the pixel format to use for the texture
+ * @return sdl::render::Texture a texture with a chess board on it
+ */
 sdl::render::Texture drawChessBoard(sdl::render::Renderer &renderer, Uint32 pixelFormat)
 {
 

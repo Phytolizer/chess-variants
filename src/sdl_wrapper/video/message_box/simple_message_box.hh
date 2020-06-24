@@ -15,6 +15,10 @@
 
 namespace sdl::video::message_box
 {
+  /**
+   * @brief A builder class used to set up parameters for SDL_ShowSimpleMessageBox.
+   * 
+   */
 class SimpleMessageBox
 {
   public:

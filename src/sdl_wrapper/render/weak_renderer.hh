@@ -18,6 +18,11 @@ namespace sdl::render
 {
 class Texture;
 
+/**
+ * @brief A weak reference to a Renderer. Used as a return value for SDL functions that
+ * return references to existing renderers.
+ * 
+ */
 class WeakRenderer
 {
   public:
@@ -54,6 +59,18 @@ class WeakRenderer
      * @return WeakTexture the target
      */
     WeakTexture getTarget() const;
+    /**
+     * @brief Get information about this rendering context.
+     * 
+     * @return SDL_RendererInfo 
+     */
+    SDL_RendererInfo getInfo() const;
+    /**
+     * @brief Get the output size for the renderer.
+     * 
+     * @return SDL_Rect the output size in pixels
+     */
+    SDL_Rect getOutputSize() const;
 
     /**
      * @brief Clear the renderer's target with its current

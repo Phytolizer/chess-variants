@@ -1,6 +1,6 @@
 /**
  * @file king.hh
- * @author your name (you@domain.com)
+ * @author Kyle Coffefy (kylecoffey1999@gmail.com)
  * @brief Defines the standard chess king
  * @date 2020-06-22
  */
@@ -14,6 +14,10 @@
 
 namespace chess
 {
+/**
+ * @brief A King piece in chess. The king can move and capture any adjacent or diagonally adjacent tile.
+ *
+ */
 class King : public Piece
 {
   public:

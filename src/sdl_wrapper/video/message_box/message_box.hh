@@ -13,6 +13,12 @@
 #include <sdl_wrapper/video/weak_window.hh>
 
 
+/**
+ * @namespace sdl::video::message_box
+ * @brief Contains several classes for two primary functions inside SDL_video.h,
+ * namely SDL_ShowMessageBox and SDL_ShowSimpleMessageBox.
+ * 
+ */
 namespace sdl::video::message_box
 {
 /**

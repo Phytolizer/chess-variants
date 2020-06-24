@@ -11,6 +11,11 @@
 #include "SDL2/SDL_surface.h"
 namespace sdl::surface
 {
+/**
+ * @brief A weak (non-owning) reference to a Surface. Used for SDL functions that return
+ * a reference to an existing surface, or as a parameter to similar functions.
+ * 
+ */
 class WeakSurface
 {
   public:

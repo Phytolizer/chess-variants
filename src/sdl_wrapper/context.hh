@@ -1,5 +1,5 @@
 /**
- * @file sdl_context.hh
+ * @file context.hh
  * @author Kyle Coffey (kylecoffey1999@gmail.com)
  * @brief Contains a wrapper for initializing and deinitializing
  * SDL and its systems.
@@ -11,6 +11,11 @@
 
 #include <sdl_wrapper/video/context.hh>
 
+/**
+ * @namespace sdl
+ * @brief The namespace under which all SDL wrapper classes and functions exist.
+ * 
+ */
 namespace sdl
 {
 /**
