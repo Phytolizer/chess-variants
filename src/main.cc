@@ -34,6 +34,7 @@ int main()
 {
     int width = 720;
     int height = 480;
+    int gridSize = 8;
     float playSize = 4 * height / 5;
 
     sdl::Context sdlContext;
@@ -80,9 +81,9 @@ int main()
         drawChessBoard(renderer, window.getPixelFormat());
         if (playSize > 8)
         {
-            for (int h = 0; h < 8; h++)
+            for (int h = 0; h < gridSize; h++)
             {
-                for (int w = 0; w < 8; w++)
+                for (int w = 0; w < gridSize; w++)
                 {
                     if (h % 2 == w % 2)
                     {
@@ -92,9 +93,10 @@ int main()
                     {
                         renderer.setDrawColor({0x77, 0x77, 0x77, 0xff});
                     }
-                    renderer.fillRect({static_cast<int>(ceil((width - playSize) / 2 + w * playSize / 8)),
-                                       static_cast<int>(ceil((height - playSize) / 2 + h * playSize / 8)),
-                                       static_cast<int>(ceil(playSize / 8)), static_cast<int>(ceil(playSize / 8))});
+                    renderer.fillRect({static_cast<int>(ceil((width - playSize) / 2 + w * playSize / gridSize)),
+                                       static_cast<int>(ceil((height - playSize) / 2 + h * playSize / gridSize)),
+                                       static_cast<int>(ceil(playSize / gridSize)),
+                                       static_cast<int>(ceil(playSize / gridSize))});
                 }
             }
         }
