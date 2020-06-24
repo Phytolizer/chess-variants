@@ -19,8 +19,19 @@ namespace sdl::render
 class WeakTexture
 {
   public:
+    /**
+     * @brief Construct a weak texture from an existing handle.
+     * 
+     * @param handle the handle
+     */
     WeakTexture(SDL_Texture *handle);
 
+    /**
+     * @brief Get the internal handle used by this texture. Calling this function gets rid of
+     * the Texture abstraction, in case you need an escape hatch.
+     * 
+     * @return SDL_Texture* the internal handle
+     */
     SDL_Texture *getHandle() const;
 
     /**
@@ -62,6 +73,10 @@ class WeakTexture
     std::pair<void *, int> lock(SDL_Rect area);
 
   protected:
+    /**
+     * @brief The internal SDL handle which the WeakTexture is abstracting over.
+     * 
+     */
     SDL_Texture *handle;
 };
 } // namespace sdl::render

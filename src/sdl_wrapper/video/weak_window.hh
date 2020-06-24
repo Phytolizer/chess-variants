@@ -24,9 +24,25 @@ namespace sdl::video
  */
 struct WindowBordersSize
 {
+    /**
+     * @brief The width of the top border decoration
+     * 
+     */
     int top;
+    /**
+     * @brief The width of the left border decoration
+     * 
+     */
     int left;
+    /**
+     * @brief The width of the bottom border decoration
+     * 
+     */
     int bottom;
+    /**
+     * @brief The width of the right border decoration
+     * 
+     */
     int right;
 };
 
@@ -36,8 +52,20 @@ struct WindowBordersSize
  */
 struct GammaRamp
 {
+    /**
+     * @brief The translation table for the red channel
+     * 
+     */
     std::array<Uint16, 256> red;
+    /**
+     * @brief The translation table for the green channel
+     * 
+     */
     std::array<Uint16, 256> green;
+    /**
+     * @brief The translation table for the blue channel
+     * 
+     */
     std::array<Uint16, 256> blue;
 };
 
@@ -51,6 +79,7 @@ class WeakWindow
     /**
      * @brief Construct a WeakWindow from the existing handle `handle`.
      *
+     * @param handle the handle
      */
     WeakWindow(SDL_Window *handle) __attribute__((nonnull(2)));
     /**
@@ -415,6 +444,10 @@ class WeakWindow
     render::RendererBuilder createRenderer();
 
   protected:
+    /**
+     * @brief The internal SDL handle that this window abstracts over
+     * 
+     */
     SDL_Window *handle;
 };
 } // namespace sdl::video

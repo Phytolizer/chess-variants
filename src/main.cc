@@ -1,5 +1,9 @@
-/// @file main.cc
-/// @author Kyle Coffey
+/**
+ * @file main.cc
+ * @author Kyle Coffey (kylecoffey1999@gmail.com)
+ * @brief The main file
+ * @date 2020-06-24
+ */
 
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_stdinc.h>

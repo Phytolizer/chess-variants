@@ -18,6 +18,11 @@ namespace sdl::video
 class WeakWindow;
 }
 
+/**
+ * @namespace sdl::render
+ * @brief Contains most classes and functions based on SDL_render.h
+ * 
+ */
 namespace sdl::render
 {
 
@@ -45,7 +50,18 @@ class Renderer : public WeakRenderer
     Renderer(const Renderer &) = delete;
     Renderer &operator=(const Renderer &) = delete;
 
+    /**
+     * @brief copy constructor
+     * 
+     * @param other the object to move from
+     */
     Renderer(Renderer &&other);
+    /**
+     * @brief copy assignment operator
+     * 
+     * @param other the object to move from
+     * @return Renderer& the object that was moved to
+     */
     Renderer &operator=(Renderer &&other);
 };
 } // namespace sdl::render

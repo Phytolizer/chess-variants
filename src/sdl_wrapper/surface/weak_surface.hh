@@ -19,10 +19,24 @@ namespace sdl::surface
 class WeakSurface
 {
   public:
+    /**
+     * @brief Construct a weak surface from an existing SDL handle.
+     * 
+     * @param handle the handle
+     */
     WeakSurface(SDL_Surface *handle);
+    /**
+     * @brief Get the internal handle which this surface abstracts over.
+     * 
+     * @return SDL_Surface* the handle
+     */
     SDL_Surface *getHandle();
 
   protected:
+    /**
+     * @brief The internal SDL handle which this surface abstracts over
+     * 
+     */
     SDL_Surface *handle;
 };
 } // namespace sdl::surface

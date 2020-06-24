@@ -13,7 +13,6 @@
 #include <sdl_wrapper/render/weak_texture.hh>
 #include <vector>
 
-
 namespace sdl::render
 {
 class Texture;
@@ -21,12 +20,23 @@ class Texture;
 /**
  * @brief A weak reference to a Renderer. Used as a return value for SDL functions that
  * return references to existing renderers.
- * 
+ *
  */
 class WeakRenderer
 {
   public:
+    /**
+     * @brief Construct a new WeakRenderer from an existing handle. This is the
+     * only way to construct WeakRenderers.
+     *
+     * @param handle the handle
+     */
     WeakRenderer(SDL_Renderer *handle) __attribute__((nonnull(2)));
+    /**
+     * @brief Get the handle of this renderer reference.
+     *
+     * @return SDL_Renderer*
+     */
     SDL_Renderer *getHandle() const;
 
     /**
@@ -61,13 +71,13 @@ class WeakRenderer
     WeakTexture getTarget() const;
     /**
      * @brief Get information about this rendering context.
-     * 
-     * @return SDL_RendererInfo 
+     *
+     * @return SDL_RendererInfo
      */
     SDL_RendererInfo getInfo() const;
     /**
      * @brief Get the output size for the renderer.
-     * 
+     *
      * @return SDL_Rect the output size in pixels
      */
     SDL_Rect getOutputSize() const;
@@ -168,6 +178,10 @@ class WeakRenderer
     void present() noexcept;
 
   protected:
+    /**
+     * @brief The SDL handle for the renderer it uses. It is used internally.
+     *
+     */
     SDL_Renderer *handle;
 };
 } // namespace sdl::render

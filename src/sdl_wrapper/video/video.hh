@@ -33,8 +33,20 @@ namespace sdl::video
  */
 struct Dpi
 {
+    /**
+     * @brief The diagonal DPI
+     * 
+     */
     float diag;
+    /**
+     * @brief The horizontal DPI
+     * 
+     */
     float horz;
+    /**
+     * @brief The vertical DPI
+     * 
+     */
     float vert;
 };
 
@@ -47,6 +59,10 @@ struct Dpi
  */
 struct Display
 {
+    /**
+     * @brief The display's index according to the system.
+     * 
+     */
     int index;
 
     /**
@@ -183,6 +199,8 @@ std::string getVideoDriver(int index);
 WeakWindow getWindowFromId(Uint32 id);
 /**
  * @brief Initialize the SDL video subsystem. You can specify a driver to use here.
+ *
+ * @param driverName the name of the driver to use, or std::nullopt for default driver
  *
  * @throw sdl::SDLException if there is an SDL error
  */

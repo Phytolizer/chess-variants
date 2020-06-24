@@ -38,8 +38,19 @@ class Context
     /// no copy assignment
     Context &operator=(const Context &) = delete;
 
-    Context(Context &&);
-    Context &operator=(Context &&);
+    /**
+     * @brief copy constructor
+     * 
+     * @param other the object to move from
+     */
+    Context(Context &&other);
+    /**
+     * @brief copy assignment operator
+     * 
+     * @param other the object to move from
+     * @return the object being moved to, for correctness
+     */
+    Context &operator=(Context &&other);
 
     /**
      * @brief Initialize the SDL video subsystem
