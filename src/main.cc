@@ -7,15 +7,15 @@
 
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_stdinc.h>
-#include <chess/gridSquare.hh>
-#include <cmath>
-#include <iostream>
 #include <sdl_wrapper/context.hh>
 #include <sdl_wrapper/render/renderer.hh>
 #include <sdl_wrapper/render/texture.hh>
 #include <sdl_wrapper/video/window.hh>
-#include <vector>
 
+#include "chess/chessGame.hh"
+#include <iostream>
+#include <vector>
+#include <cmath>
 using std::cerr;
 
 /**
@@ -40,11 +40,11 @@ int main()
     int width = 720;
     int height = 480;
     int margin = 8; // percent out of 100
-    int xGridAmount = 8;
-    int yGridAmount = 8;
-    int squareSize = ((100 - margin * 2) * std::min(height/yGridAmount, width/xGridAmount) / 100);
-    int xDisplacement = (width - squareSize * xGridAmount) / 2;
-    int yDisplacement = (height - squareSize * yGridAmount) / 2;
+    int xGridAmount = 5;
+    int yGridAmount = 10;
+
+    chess::ChessGame activeGame(xGridAmount, yGridAmount);
+    activeGame.updateSizes(width, height, margin, xGridAmount, yGridAmount);
 
     sdl::Context sdlContext;
     sdl::video::Context videoContext = sdlContext.initVideo();
@@ -53,23 +53,6 @@ int main()
         videoContext.createWindow("test window", 0, 0, width, height).positionCentered().resizable().build();
 
     sdl::render::Renderer renderer = window.createRenderer().accelerated().build();
-
-    std::vector<chess::GridSquare *> grid(xGridAmount * yGridAmount);
-    int i = 0;
-    for (int x = 0; x < xGridAmount; x++)
-    {
-        for (int y = 0; y < yGridAmount; y++)
-        {
-            if (x % 2 == y % 2)
-            {
-                grid[i++] = new chess::GridSquare(x, y, {0xaa, 0xaa, 0xaa, 0xff}, true);
-            }
-            else
-            {
-                grid[i++] = new chess::GridSquare(x, y, {0x77, 0x77, 0x77, 0xff}, true);
-            }
-        }
-    }
 
     bool run = true;
     while (run)
@@ -89,9 +72,7 @@ int main()
                 {
                     width = we.data1;
                     height = we.data2;
-                    squareSize = ((100 - margin * 2) * std::min(height/yGridAmount, width/xGridAmount) / 100);
-                    xDisplacement = (width - squareSize * xGridAmount) / 2;
-                    yDisplacement = (height - squareSize * yGridAmount) / 2;
+                    activeGame.updateSizes(width, height, margin, xGridAmount, yGridAmount);
                 }
             }
         }
@@ -99,10 +80,7 @@ int main()
         renderer.setDrawColor({0x44, 0x44, 0x44, 0xff});
         renderer.clear();
 
-        for (auto &g : grid)
-        {
-            g->display(renderer, squareSize, xDisplacement, yDisplacement);
-        }
+        activeGame.displayGrid(renderer);
 
         renderer.present();
     }

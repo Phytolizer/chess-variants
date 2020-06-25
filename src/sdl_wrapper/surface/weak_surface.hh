@@ -59,7 +59,7 @@ class WeakSurface
     * @param fmt the pixel format to optimize the new surface for
     * @return Surface the new surface
     */
-    Surface convertSurface(const SDL_PixelFormat &fmt);
+    //Surface convertSurface(const SDL_PixelFormat &fmt);
 
   protected:
     /**

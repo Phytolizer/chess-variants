@@ -50,7 +50,7 @@ void WeakSurface::blitTo(std::optional<SDL_Rect> clip, WeakSurface dest, std::op
     }
 }
 
-Surface WeakSurface::convertSurface(const SDL_PixelFormat &fmt)
+/*Surface WeakSurface::convertSurface(const SDL_PixelFormat &fmt)
 {
     SDL_Surface *nHandle = SDL_ConvertSurface(handle, &fmt, 0);
     if (nHandle == nullptr)
@@ -58,6 +58,6 @@ Surface WeakSurface::convertSurface(const SDL_PixelFormat &fmt)
         throw SDLException("converting surface");
     }
     return Surface(nHandle);
-}
+}*/
 
 } // namespace sdl::surface
