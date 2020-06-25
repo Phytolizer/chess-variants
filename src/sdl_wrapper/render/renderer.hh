@@ -45,6 +45,7 @@ class Renderer : public WeakRenderer
      */
     Renderer(video::WeakWindow &window, int index, Uint32 flags);
 
+    Renderer(SDL_Renderer *handle);
     ~Renderer();
 
     Renderer(const Renderer &) = delete;

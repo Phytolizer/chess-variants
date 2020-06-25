@@ -3,7 +3,7 @@
 
 namespace sdl::render
 {
-RendererBuilder::RendererBuilder(video::Window &window) : windowHandle(window.getHandle()), index(-1), flags(0)
+RendererBuilder::RendererBuilder(video::WeakWindow &window) : windowHandle(window.getHandle()), index(-1), flags(0)
 {
 }
 

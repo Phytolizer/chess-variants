@@ -13,6 +13,10 @@ Window::Window(video::Context &, std::string_view title, int x, int y, int w, in
     }
 }
 
+Window::Window(SDL_Window *handle) : WeakWindow(handle)
+{
+}
+
 Window::Window(const void *nativeData) : WeakWindow(SDL_CreateWindowFrom(nativeData))
 {
     if (handle == nullptr)

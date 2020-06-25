@@ -1,4 +1,5 @@
 #include "renderer.hh"
+#include "SDL2/SDL_render.h"
 #include <sdl_wrapper/render/texture.hh>
 #include <sdl_wrapper/sdl_exception.hh>
 #include <sdl_wrapper/video/window.hh>
@@ -15,6 +16,10 @@ Renderer::Renderer(video::WeakWindow &window, int index, Uint32 flags)
     {
         throw SDLException("creating window renderer");
     }
+}
+
+Renderer::Renderer(SDL_Renderer *handle) : WeakRenderer(handle)
+{
 }
 
 Renderer::~Renderer()

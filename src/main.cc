@@ -7,25 +7,26 @@
 
 #include <SDL2/SDL_events.h>
 #include <SDL2/SDL_stdinc.h>
+#include <chess/gridSquare.hh>
 #include <cmath>
 #include <iostream>
 #include <sdl_wrapper/context.hh>
 #include <sdl_wrapper/render/renderer.hh>
 #include <sdl_wrapper/render/texture.hh>
 #include <sdl_wrapper/video/window.hh>
+#include <vector>
 
 using std::cerr;
 
 /**
  * @brief Draw the chess board for the game. It is drawn to a texture which is then returned.
- * 
+ *
  * @param renderer a renderer that is able to target textures
  * @param pixelFormat the pixel format to use for the texture
  * @return sdl::render::Texture a texture with a chess board on it
  */
 sdl::render::Texture drawChessBoard(sdl::render::Renderer &renderer, Uint32 pixelFormat)
 {
-
 }
 
 /**
@@ -38,8 +39,12 @@ int main()
 {
     int width = 720;
     int height = 480;
-    int gridSize = 8;
-    float playSize = 4 * height / 5;
+    int margin = 8; // percent out of 100
+    int xGridAmount = 8;
+    int yGridAmount = 8;
+    int squareSize = ((100 - margin * 2) * std::min(height/yGridAmount, width/xGridAmount) / 100);
+    int xDisplacement = (width - squareSize * xGridAmount) / 2;
+    int yDisplacement = (height - squareSize * yGridAmount) / 2;
 
     sdl::Context sdlContext;
     sdl::video::Context videoContext = sdlContext.initVideo();
@@ -48,6 +53,23 @@ int main()
         videoContext.createWindow("test window", 0, 0, width, height).positionCentered().resizable().build();
 
     sdl::render::Renderer renderer = window.createRenderer().accelerated().build();
+
+    std::vector<chess::GridSquare *> grid(xGridAmount * yGridAmount);
+    int i = 0;
+    for (int x = 0; x < xGridAmount; x++)
+    {
+        for (int y = 0; y < yGridAmount; y++)
+        {
+            if (x % 2 == y % 2)
+            {
+                grid[i++] = new chess::GridSquare(x, y, {0xaa, 0xaa, 0xaa, 0xff}, true);
+            }
+            else
+            {
+                grid[i++] = new chess::GridSquare(x, y, {0x77, 0x77, 0x77, 0xff}, true);
+            }
+        }
+    }
 
     bool run = true;
     while (run)
@@ -67,14 +89,9 @@ int main()
                 {
                     width = we.data1;
                     height = we.data2;
-                    if (width > height)
-                    {
-                        playSize = 4 * height / 5;
-                    }
-                    else
-                    {
-                        playSize = 4 * width / 5;
-                    }
+                    squareSize = ((100 - margin * 2) * std::min(height/yGridAmount, width/xGridAmount) / 100);
+                    xDisplacement = (width - squareSize * xGridAmount) / 2;
+                    yDisplacement = (height - squareSize * yGridAmount) / 2;
                 }
             }
         }
@@ -82,28 +99,11 @@ int main()
         renderer.setDrawColor({0x44, 0x44, 0x44, 0xff});
         renderer.clear();
 
-        drawChessBoard(renderer, window.getPixelFormat());
-        if (playSize > 8)
+        for (auto &g : grid)
         {
-            for (int h = 0; h < gridSize; h++)
-            {
-                for (int w = 0; w < gridSize; w++)
-                {
-                    if (h % 2 == w % 2)
-                    {
-                        renderer.setDrawColor({0xbb, 0xbb, 0xbb, 0xff});
-                    }
-                    else
-                    {
-                        renderer.setDrawColor({0x77, 0x77, 0x77, 0xff});
-                    }
-                    renderer.fillRect({static_cast<int>(ceil((width - playSize) / 2 + w * playSize / gridSize)),
-                                       static_cast<int>(ceil((height - playSize) / 2 + h * playSize / gridSize)),
-                                       static_cast<int>(ceil(playSize / gridSize)),
-                                       static_cast<int>(ceil(playSize / gridSize))});
-                }
-            }
+            g->display(renderer, squareSize, xDisplacement, yDisplacement);
         }
+
         renderer.present();
     }
 
