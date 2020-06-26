@@ -10,6 +10,7 @@
 
 #include "SDL2/SDL_surface.h"
 #include <optional>
+#include <vector>
 
 namespace sdl::surface
 {
@@ -45,7 +46,7 @@ class WeakSurface
 
     /**
      * @brief Perform a fast copy to another surface.
-     * 
+     *
      * @param clip the part of this surface to copy
      * @param dest the surface to copy to
      * @param destRect the part of the destination to copy to
@@ -53,13 +54,68 @@ class WeakSurface
     void blitTo(std::optional<SDL_Rect> clip, WeakSurface dest, std::optional<SDL_Rect> destRect);
 
     /**
-    * @brief Copy a surface into a new one that is optimized for a particular pixel format.
-    * 
-    * @param src the original surface
-    * @param fmt the pixel format to optimize the new surface for
-    * @return Surface the new surface
-    */
-    //Surface convertSurface(const SDL_PixelFormat &fmt);
+     * @brief Fill a rectangle of the surface with a color.
+     *
+     * @param rect the area to fill
+     * @param color the color to fill in
+     */
+    void fillRect(SDL_Rect rect, SDL_Color color);
+
+    /**
+     * @brief Fill some areas of a surface with a color.
+     *
+     * @param rects the areas to fill
+     * @param color the color to fill in
+     */
+    void fillRects(std::vector<SDL_Rect> rects, SDL_Color color);
+
+    /**
+     * @brief Get the clip that is used for this surface.
+     * The surface's clip is the area that is drawable within a surface.
+     *
+     * @return SDL_Rect the clip
+     */
+    SDL_Rect getClip() const noexcept;
+
+    /**
+     * @brief Get the color key for this surface.
+     *
+     * @return SDL_Color the color key
+     */
+    SDL_Color getColorKey() const;
+
+    /**
+     * @brief Get the alpha multiplier for this surface.
+     *
+     * @return Uint8 the alpha mod
+     */
+    Uint8 getAlphaMod() const;
+
+    /**
+     * @brief Get the blending mode for this surface.
+     *
+     * @return SDL_BlendMode the blend mode
+     */
+    SDL_BlendMode getBlendMode() const;
+
+    /**
+     * @brief Get the color multiplier used when this surface is blit.
+     *
+     * @return SDL_Color the color mod
+     */
+    SDL_Color getColorMod() const;
+
+    /**
+     * @brief Lock the surface for direct pixel access.
+     *
+     */
+    void lock();
+
+    /**
+     * @brief Unlock the surface, disables direct pixel access.
+     *
+     */
+    void unlock() noexcept;
 
   protected:
     /**

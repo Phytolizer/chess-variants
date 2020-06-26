@@ -45,6 +45,11 @@ class Renderer : public WeakRenderer
      */
     Renderer(video::WeakWindow &window, int index, Uint32 flags);
 
+    /**
+     * @brief Construct a new Renderer object using an existing handle.
+     * 
+     * @param handle the handle
+     */
     Renderer(SDL_Renderer *handle);
     ~Renderer();
 

@@ -11,6 +11,7 @@
 #include <SDL2/SDL_stdinc.h>
 #include <SDL2/SDL_surface.h>
 #include <sdl_wrapper/surface/weak_surface.hh>
+#include <string_view>
 
 /**
  * @namespace sdl::surface
@@ -31,7 +32,7 @@ class Surface : public WeakSurface
   public:
     /**
      * @brief Construct a new Surface from an existing SDL handle.
-     * 
+     *
      * @param handle the handle
      */
     Surface(SDL_Surface *handle);
@@ -48,6 +49,21 @@ class Surface : public WeakSurface
      */
     Surface(int width, int height, int depth, Uint32 rmask, Uint32 gmask, Uint32 bmask, Uint32 amask);
     /**
+     * @brief Construct a new Surface from existing pixel data.
+     *
+     * @param pixels the pixel data
+     * @param width the width of the pixel data
+     * @param height the height of the pixel data
+     * @param depth the number of bits per pixel
+     * @param pitch the length of a pixel row in bytes
+     * @param rmask the red component of a color mask
+     * @param gmask the green component of a color mask
+     * @param bmask the blue component of a color mask
+     * @param amask the alpha component of a color mask
+     */
+    Surface(void *pixels, int width, int height, int depth, int pitch, Uint32 rmask, Uint32 gmask, Uint32 bmask,
+            Uint32 amask);
+    /**
      * @brief Construct a new Surface with a specific width, height, depth, and pixel format.
      *
      * @param width the surface's width in pixels
@@ -57,6 +73,17 @@ class Surface : public WeakSurface
      * RGBA color with 8 bits per component
      */
     Surface(int width, int height, int depth, Uint32 pixelFormat);
+    /**
+     * @brief Construct a new Surface from existing pixel data with a specified pixel format.
+     *
+     * @param pixels the pixel data
+     * @param width the width of the data
+     * @param height the height of the data
+     * @param depth the number of bits per pixel
+     * @param pitch the number of bytes per row of image
+     * @param pixelFormat the pixel format, a value from SDL_PixelFormatEnum
+     */
+    Surface(void *pixels, int width, int height, int depth, int pitch, Uint32 pixelFormat);
 
     ~Surface();
 
@@ -76,6 +103,26 @@ class Surface : public WeakSurface
      * @return Surface& the object that was moved to
      */
     Surface &operator=(Surface &&other);
+
+    /**
+     * @brief Copy a surface into a new one that is optimized for blitting to a particular pixel format.
+     * Note that the new surface still has the original pixel format; to convert the pixel format
+     * use convertFormat.
+     *
+     * @see convertFormat
+     *
+     * @param fmt the pixel format to optimize the new surface for
+     * @return Surface the new surface
+     */
+    Surface convert(SDL_PixelFormat fmt);
+
+    /**
+     * @brief Copy a surface into a new one with a different pixel format.
+     *
+     * @param fmt the format to convert to
+     * @return Surface the original surface converted to the new format
+     */
+    Surface convertFormat(Uint32 fmt);
 };
 
 // free functions
@@ -94,6 +141,14 @@ class Surface : public WeakSurface
  */
 void convertPixels(int width, int height, Uint32 srcFormat, int srcPitch, const void *src, Uint32 dstFormat,
                    int dstPitch, void *dst);
+
+/**
+ * @brief Load a surface from a BMP file.
+ * 
+ * @param fileName the file to load
+ * @return Surface the loaded surface
+ */
+Surface loadBmp(std::string_view fileName);
 
 } // namespace sdl::surface
 

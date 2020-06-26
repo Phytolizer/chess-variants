@@ -35,6 +35,11 @@ class Window : public WeakWindow
      * @param flags the window's flags
      */
     Window(video::Context &, std::string_view title, int x, int y, int w, int h, Uint32 flags);
+    /**
+     * @brief Construct a new Window from an existing handle.
+     * 
+     * @param handle the handle
+     */
     Window(SDL_Window *handle);
     /**
      * @brief Construct a new Window from an existing native window. This function is very dangerous.
