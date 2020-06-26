@@ -18,6 +18,24 @@ namespace sdl::render
 class Texture;
 
 /**
+ * @brief Hold the scaling factors that are returned from Renderer::getScale.
+ *
+ */
+struct ScalingFactors
+{
+    /**
+     * @brief The horizontal scaling factor.
+     *
+     */
+    float scaleX;
+    /**
+     * @brief The vertical scaling factor.
+     *
+     */
+    float scaleY;
+};
+
+/**
  * @brief A weak reference to a Renderer. Used as a return value for SDL functions that
  * return references to existing renderers.
  *
@@ -171,6 +189,108 @@ class WeakRenderer
      * @param rects the rectangles to draw
      */
     void fillRects(const std::vector<SDL_Rect> &rects);
+    /**
+     * @brief Get the clip rectangle for the current render target. If clipping is disabled, returns an empty rectangle.
+     *
+     * @return SDL_Rect the clip
+     */
+    SDL_Rect getClip() const noexcept;
+    /**
+     * @brief Check if integer scale values are forced for resolution-independent rendering.
+     *
+     * @return true integer scales are forced
+     * @return false integer scales are not forced
+     */
+    bool isIntegerScale() const;
+    /**
+     * @brief Get the logical size of this renderer, i.e. the device-independent resolution.
+     *
+     * @return SDL_Rect the logical size, x and y are always 0
+     */
+    SDL_Rect getLogicalSize() const noexcept;
+    /**
+     * @brief Get the drawing scale for the current render target.
+     *
+     * @return ScalingFactors the scale
+     */
+    ScalingFactors getScale() const noexcept;
+    /**
+     * @brief Get the drawing area on the current target. Viewports are used for things like minimaps.
+     *
+     * @return SDL_Rect the viewport
+     */
+    SDL_Rect getViewport() const noexcept;
+    /**
+     * @brief Check whether clipping is enabled for this renderer.
+     *
+     * @return true clipping is enabled
+     * @return false clipping is disabled
+     */
+    bool isClipEnabled() const noexcept;
+    /**
+     * @brief Set the clip rectangle for rendering on the current target.
+     *
+     * @param clipRect the clip
+     */
+    void setClip(SDL_Rect clipRect);
+    /**
+     * @brief Set whether to force integer scales for resolution-independent rendering.
+     *
+     * @param forceIntegerScale the value
+     */
+    void setIntegerScale(bool forceIntegerScale);
+    /**
+     * @brief Set the device-independent resolution for rendering.
+     *
+     * @param size the size
+     */
+    void setLogicalSize(SDL_Rect size);
+    /**
+     * @brief Set the drawing scale for rendering on the current target.
+     *
+     * @param scale the scale
+     */
+    void setScale(ScalingFactors scale);
+    /**
+     * @brief Set the drawing area for rendering on the current target. This is useful for things such as minimaps where
+     * part of the screen has its own coordinate system.
+     *
+     * @param viewport the viewport
+     */
+    void setViewport(SDL_Rect viewport);
+    /**
+     * @brief Check whether the window supports the use of render targets.
+     *
+     * @return true the window supports render targets
+     * @return false the window does not support render targets
+     */
+    bool targetSupported() const noexcept;
+    /**
+     * @brief Set the blend mode used for drawing operations on this renderer. This affects how translucent objects
+     * appear when layered on top of other objects.
+     *
+     * @param mode the blend mode
+     */
+    void setBlendMode(SDL_BlendMode mode);
+    /**
+     * @brief Set the current rendering target. This fails if the renderer was not created with texture targeting
+     * enabled.
+     *
+     * @param texture the texture to target
+     */
+    void setTarget(WeakTexture texture);
+    /**
+     * @brief Set the current rendering target to the renderer's original target. Use this to stop rendering to a
+     * texture.
+     *
+     */
+    void resetTarget();
+    /**
+     * @brief Set an additional alpha multiplier used in render copy operations.
+     *
+     * @param alpha the alpha mod
+     */
+    void setAlphaMod(Uint8 alpha);
     /**
      * @brief Push the renderer's changes to the target
      *

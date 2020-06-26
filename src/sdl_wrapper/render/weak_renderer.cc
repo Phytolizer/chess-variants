@@ -41,7 +41,7 @@ SDL_Color WeakRenderer::getDrawColor() const
 
 WeakTexture WeakRenderer::getTarget() const
 {
-    return WeakTexture(SDL_GetRenderTarget(handle));
+    return WeakTexture(SDL_GetRenderTarget(handle), 0, 0);
 }
 
 void WeakRenderer::clear()
@@ -203,5 +203,129 @@ SDL_Rect WeakRenderer::getOutputSize() const
         throw SDLException("getting renderer output size");
     }
     return outputSize;
+}
+
+SDL_Rect WeakRenderer::getClip() const noexcept
+{
+    SDL_Rect clip;
+    SDL_RenderGetClipRect(handle, &clip);
+    return clip;
+}
+
+bool WeakRenderer::isIntegerScale() const
+{
+    // this function is bad at telling when an error occurred, we must use the return value of SDL_GetError() to be sure
+    SDL_ClearError();
+    SDL_bool intScale = SDL_RenderGetIntegerScale(handle);
+    if (intScale == SDL_FALSE && std::strlen(SDL_GetError()) != 0)
+    {
+        throw SDLException("getting renderer integer scale");
+    }
+    return intScale == SDL_TRUE;
+}
+
+SDL_Rect WeakRenderer::getLogicalSize() const noexcept
+{
+    SDL_Rect logicalSize;
+    SDL_RenderGetLogicalSize(handle, &logicalSize.w, &logicalSize.h);
+    return logicalSize;
+}
+
+ScalingFactors WeakRenderer::getScale() const noexcept
+{
+    ScalingFactors scale;
+    SDL_RenderGetScale(handle, &scale.scaleX, &scale.scaleY);
+    return scale;
+}
+
+SDL_Rect WeakRenderer::getViewport() const noexcept
+{
+    SDL_Rect viewport;
+    SDL_RenderGetViewport(handle, &viewport);
+    return viewport;
+}
+
+bool WeakRenderer::isClipEnabled() const noexcept
+{
+    SDL_bool enabled = SDL_RenderIsClipEnabled(handle);
+    return enabled == SDL_TRUE;
+}
+
+void WeakRenderer::setClip(SDL_Rect clipRect)
+{
+    int code = SDL_RenderSetClipRect(handle, &clipRect);
+    if (code != 0)
+    {
+        throw SDLException("setting renderer clip rect");
+    }
+}
+
+void WeakRenderer::setIntegerScale(bool forceIntegerScale)
+{
+    int code = SDL_RenderSetIntegerScale(handle, forceIntegerScale ? SDL_TRUE : SDL_FALSE);
+    if (code != 0)
+    {
+        throw SDLException("setting renderer integer scale");
+    }
+}
+
+void WeakRenderer::setLogicalSize(SDL_Rect size)
+{
+    int code = SDL_RenderSetLogicalSize(handle, size.w, size.h);
+    if (code != 0)
+    {
+        throw SDLException("setting renderer logical size");
+    }
+}
+
+void WeakRenderer::setScale(ScalingFactors scale)
+{
+    int code = SDL_RenderSetScale(handle, scale.scaleX, scale.scaleY);
+    if (code != 0)
+    {
+        throw SDLException("setting renderer scale");
+    }
+}
+
+void WeakRenderer::setViewport(SDL_Rect viewport)
+{
+    int code = SDL_RenderSetViewport(handle, &viewport);
+    if (code != 0)
+    {
+        throw SDLException("setting renderer viewport");
+    }
+}
+
+bool WeakRenderer::targetSupported() const noexcept
+{
+    SDL_bool supported = SDL_RenderTargetSupported(handle);
+    return supported == SDL_TRUE;
+}
+
+void WeakRenderer::setBlendMode(SDL_BlendMode mode)
+{
+    int code = SDL_SetRenderDrawBlendMode(handle, mode);
+    if (code != 0)
+    {
+        throw SDLException("setting renderer draw blend mode");
+    }
+}
+
+void WeakRenderer::setTarget(WeakTexture texture)
+{
+    int code = SDL_SetRenderTarget(handle, texture.getHandle());
+    if (code != 0)
+    {
+        throw SDLException("setting renderer target");
+    }
+}
+
+void WeakRenderer::resetTarget()
+{
+    int code = SDL_SetRenderTarget(handle, nullptr);
+    if (code != 0)
+    {
+        throw SDLException("resetting renderer target");
+    }
 }
 } // namespace sdl::render

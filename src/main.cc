@@ -13,9 +13,10 @@
 #include <sdl_wrapper/video/window.hh>
 
 #include "chess/chessGame.hh"
+#include <cmath>
 #include <iostream>
 #include <vector>
-#include <cmath>
+
 using std::cerr;
 
 /**
@@ -43,9 +44,6 @@ int main()
     int xGridAmount = 5;
     int yGridAmount = 10;
 
-    chess::ChessGame activeGame(xGridAmount, yGridAmount);
-    activeGame.updateSizes(width, height, margin, xGridAmount, yGridAmount);
-
     sdl::Context sdlContext;
     sdl::video::Context videoContext = sdlContext.initVideo();
 
@@ -53,6 +51,9 @@ int main()
         videoContext.createWindow("test window", 0, 0, width, height).positionCentered().resizable().build();
 
     sdl::render::Renderer renderer = window.createRenderer().accelerated().build();
+
+    chess::ChessGame activeGame(xGridAmount, yGridAmount);
+    activeGame.redraw(renderer, width, height, margin, xGridAmount, yGridAmount);
 
     bool run = true;
     while (run)
@@ -72,7 +73,7 @@ int main()
                 {
                     width = we.data1;
                     height = we.data2;
-                    activeGame.updateSizes(width, height, margin, xGridAmount, yGridAmount);
+                    activeGame.redraw(renderer, width, height, margin, xGridAmount, yGridAmount);
                 }
             }
         }

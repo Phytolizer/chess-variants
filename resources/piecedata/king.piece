@@ -1,0 +1,15 @@
+# Name
+King
+# Moves
+-1, 1
+0, 1
+1, 1
+-1, 0
+1, 0
+-1, -1
+0, -1
+1, -1
+END
+# Images
+king_white.png
+king_black.png

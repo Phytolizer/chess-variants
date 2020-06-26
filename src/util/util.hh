@@ -8,8 +8,10 @@
 #ifndef UTIL_UTIL_HH
 #define UTIL_UTIL_HH
 
+#include <iostream>
 #include <sstream>
 #include <string>
+
 
 /**
  * @namespace util
@@ -80,6 +82,39 @@ template <typename T> std::string concat(T it)
     ss << it;
     return ss.str();
 }
+
+/**
+ * @brief Print the parameters using std::cout. This is purely a syntactic conversion.
+ *
+ * @tparam T the first parameter's type
+ * @tparam Ts the other parameter types
+ * @param first the first parameter to print
+ * @param rest the rest will be put back in this function recursively
+ */
+template <typename T, typename... Ts> void print(T first, Ts... rest)
+{
+    std::cout << first;
+    print(rest...);
+}
+
+/**
+ * @brief Print the parameter using std::cout. This is the base case of print(T, Ts...).
+ *
+ * @tparam T the parameter's type
+ * @param it the parameter to print
+ */
+template <typename T> void print(T it)
+{
+    std::cout << it;
+}
+
+/**
+ * @brief Trim whitespace from either end of a string.
+ * 
+ * @param s the string to trim
+ * @return std::string the trimmed string
+ */
+std::string trim(std::string_view s);
 } // namespace util
 
 #endif // UTIL_UTIL_HH

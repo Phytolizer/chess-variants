@@ -44,7 +44,7 @@ class Texture : public WeakTexture
      */
     Texture(Renderer &renderer, surface::Surface &surface);
 
-    ~Texture();
+    virtual ~Texture();
 
     Texture(const Texture &) = delete;
     virtual Texture &operator=(const Texture &) = delete;

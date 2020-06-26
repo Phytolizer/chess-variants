@@ -4,7 +4,7 @@
 namespace sdl::render
 {
 
-WeakTexture::WeakTexture(SDL_Texture *handle) : handle(handle)
+WeakTexture::WeakTexture(SDL_Texture *handle, int width, int height) : handle(handle), width(width), height(height)
 {
 }
 
@@ -44,6 +44,16 @@ SDL_Color WeakTexture::getColorMod() const
         throw SDLException("getting texture color mod");
     }
     return mod;
+}
+
+int WeakTexture::getWidth() const noexcept
+{
+    return width;
+}
+
+int WeakTexture::getHeight() const noexcept
+{
+    return height;
 }
 
 } // namespace sdl::render

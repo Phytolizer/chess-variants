@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <chess/gridSquare.hh>
 #include <vector>
+#include <sdl_wrapper/render/texture.hh>
 
 /**
  * @namespace chess
@@ -37,13 +38,14 @@ class ChessGame
     /**
      * @brief Compute the new size for the board given the screen space.
      *
+     * @param rr the renderer to redraw the texture with
      * @param width the screen width
      * @param height the screen height
      * @param margin the amount of space between the edges of the screen and the edges of the board
-     * @param xGridAmount the number of columns in the board
-     * @param yGridAmount the number of rows in the board
+     * @param nCols the number of columns in the board
+     * @param nRows the number of rows in the board
      */
-    void updateSizes(int width, int height, int margin, int xGridAmount, int yGridAmount);
+    void redraw(sdl::render::Renderer &rr, int width, int height, int margin, int nCols, int nRows);
     /**
      * @brief Display the grid using the renderer provided.
      *
@@ -57,6 +59,11 @@ class ChessGame
      *
      */
     std::vector<chess::GridSquare *> grid;
+    /**
+     * @brief A rendered chess board to use in displayGrid.
+     * 
+     */
+    std::optional<sdl::render::Texture> chessBoard;
     /**
      * @brief The size of each grid square in pixels.
      *
