@@ -3,10 +3,6 @@
 
 namespace chess
 {
-void Piece::toggleSelected()
-{
-    selected = !selected;
-}
 void Piece::giveCrown()
 {
     if (!hasCrown_)

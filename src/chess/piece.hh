@@ -30,11 +30,6 @@ class Piece
      */
     void display();
     /**
-     * @brief Toggle the chess piece's selected state.
-     *
-     */
-    void toggleSelected();
-    /**
      * @brief Give this piece a crown. Only one piece should have a crown.
      * The piece with the crown will lose the game if it is checkmated.
      *
