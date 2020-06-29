@@ -110,11 +110,19 @@ template <typename T, typename... Ts> void print(T first, Ts... rest)
 
 /**
  * @brief Trim whitespace from either end of a string.
- * 
+ *
  * @param s the string to trim
  * @return std::string the trimmed string
  */
 std::string trim(std::string_view s);
+
+/**
+ * @brief Parse an integer from a string.
+ * 
+ * @param s the string
+ * @return long the integer
+ */
+long parseInt(std::string_view s);
 } // namespace util
 
 #endif // UTIL_UTIL_HH

@@ -11,4 +11,16 @@ std::string trim(std::string_view s)
     s2.erase(last.base(), s2.end());
     return s2;
 }
+
+long parseInt(std::string_view s)
+{
+    char *end;
+    constexpr int BASE = 10;
+    long l = std::strtol(s.data(), &end, BASE);
+    if (s.length() == 0 || *end != '\0')
+    {
+        throw std::runtime_error(concat("parsing integer: '", s, "' is not an integer"));
+    }
+    return l;
+}
 } // namespace util
