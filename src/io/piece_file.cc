@@ -7,6 +7,10 @@
 
 namespace io
 {
+/**
+ * @brief The state we're in while parsing a piece file.
+ *
+ */
 enum class PieceFileState
 {
     PieceName,
