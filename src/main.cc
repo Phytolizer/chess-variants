@@ -26,6 +26,17 @@ using std::cerr;
 constexpr SDL_Color BG_COLOR = {0x44, 0x44, 0x44, 0xff};
 
 /**
+ * @brief The width of the initial window
+ * 
+ */
+constexpr int INITIAL_WIDTH = 720;
+/**
+ * @brief The height of the initial window
+ * 
+ */
+constexpr int INITIAL_HEIGHT = 480;
+
+/**
  * @brief The main function.
  *
  * @return int The exit status code.
@@ -33,11 +44,11 @@ constexpr SDL_Color BG_COLOR = {0x44, 0x44, 0x44, 0xff};
  */
 int main()
 {
-    int width = 720;
-    int height = 480;
-    int margin = 8; // percent out of 100
-    int xGridAmount = 5;
-    int yGridAmount = 10;
+    int width = INITIAL_WIDTH;
+    int height = INITIAL_HEIGHT;
+    constexpr int MARGIN = 8; // percent out of 100
+    constexpr int GRID_NCOLS = 5;
+    constexpr int GRID_NROWS = 10;
 
     sdl::Context sdlContext;
     sdl::video::Context videoContext = sdlContext.initVideo();
@@ -47,8 +58,8 @@ int main()
 
     sdl::render::Renderer renderer = window.createRenderer().accelerated().build();
 
-    chess::ChessGame activeGame(xGridAmount, yGridAmount);
-    activeGame.redraw(renderer, width, height, margin, xGridAmount, yGridAmount);
+    chess::ChessGame activeGame(GRID_NCOLS, GRID_NROWS);
+    activeGame.redraw(renderer, width, height, MARGIN, GRID_NCOLS, GRID_NROWS);
 
     bool run = true;
     while (run)
