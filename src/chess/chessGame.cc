@@ -11,13 +11,15 @@ ChessGame::ChessGame(int xGridAmount, int yGridAmount)
     {
         for (int y = 0; y < yGridAmount; y++)
         {
+            constexpr SDL_Color LIGHT_GRAY = {0xaa, 0xaa, 0xaa, 0xff};
+            constexpr SDL_Color DARK_GRAY = {0x77, 0x77, 0x77, 0xff};
             if (x % 2 == y % 2)
             {
-                grid[i++] = new chess::GridSquare(x, y, {0xaa, 0xaa, 0xaa, 0xff}, true);
+                grid[i++] = new chess::GridSquare(x, y, LIGHT_GRAY, true);
             }
             else
             {
-                grid[i++] = new chess::GridSquare(x, y, {0x77, 0x77, 0x77, 0xff}, true);
+                grid[i++] = new chess::GridSquare(x, y, DARK_GRAY, true);
             }
         }
     }
@@ -30,6 +32,8 @@ ChessGame::ChessGame(int xGridAmount, int yGridAmount)
 void ChessGame::redraw(sdl::render::Renderer &rr, int width, int height, int margin, int nCols, int nRows)
 {
     squareSize = ((100 - margin * 2) * std::min(height / nRows, width / nCols) / 100);
+    constexpr int HUNDRED_PERCENT = 100;
+    squareSize = ((HUNDRED_PERCENT - margin * 2) * std::min(height / nRows, width / nCols) / HUNDRED_PERCENT);
     xDisplacement = (width - squareSize * nCols) / 2;
     yDisplacement = (height - squareSize * nRows) / 2;
     int oldW = chessBoard ? chessBoard->getWidth() : 0;
