@@ -67,12 +67,7 @@ int main()
         SDL_Event e;
         while (SDL_PollEvent(&e) != 0)
         {
-            if (e.type == SDL_QUIT)
-            {
-                run = false;
-                break;
-            }
-            else if (e.type == SDL_WINDOWEVENT)
+            if (e.type == SDL_WINDOWEVENT)
             {
                 SDL_WindowEvent we = e.window;
                 if (we.event == SDL_WINDOWEVENT_SIZE_CHANGED)
