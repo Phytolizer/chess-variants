@@ -1,4 +1,5 @@
 #include "piece_file.hh"
+#include <chess/piece_factory.hh>
 #include <fstream>
 #include <sdl_wrapper/render/texture.hh>
 #include <string>
@@ -14,8 +15,7 @@ enum class PieceFileState
     BlackFileName,
     Done
 };
-chess::Piece readPieceFile(sdl::image::Context &imgContext, sdl::render::Renderer &renderer,
-                           chess::PieceFactory &factory, std::string_view fileName)
+chess::PieceFactory readPieceFile(sdl::image::Context &imgContext, std::string_view fileName)
 {
     std::ifstream file(fileName.data());
     std::string line;
@@ -96,9 +96,6 @@ chess::Piece readPieceFile(sdl::image::Context &imgContext, sdl::render::Rendere
     // load images
     auto whiteSurface = imgContext.load(whiteFile);
     auto blackSurface = imgContext.load(blackFile);
-    sdl::render::Texture whiteTexture(renderer, whiteSurface);
-    sdl::render::Texture blackTexture(renderer, blackSurface);
-    chess::PieceImages images = {std::move(whiteTexture), std::move(blackTexture)};
-    return factory.create(validMoves, std::move(images));
+    return chess::PieceFactory(validMoves, std::move(whiteSurface), std::move(blackSurface));
 }
 } // namespace io

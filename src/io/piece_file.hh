@@ -23,16 +23,13 @@
 namespace io
 {
 /**
- * @brief Read a piece file and create a Piece representing it.
- *
- * @param imgContext the SDL_image context used to load image files
- * @param renderer the renderer to create the image textures with
- * @param factory the piece factory for creating the piece
- * @param fileName the file to load
- * @return chess::Piece the piece prototype
+ * @brief Read a piece file and create a PieceFactory representing that kind of piece.
+ * 
+ * @param imgContext used to load images from file
+ * @param fileName the piece file name
+ * @return chess::PieceFactory 
  */
-chess::Piece readPieceFile(sdl::image::Context &imgContext, sdl::render::Renderer &renderer,
-                           chess::PieceFactory &factory, std::string_view fileName);
+chess::PieceFactory readPieceFile(sdl::image::Context &imgContext, std::string_view fileName);
 } // namespace io
 
 #endif // IO_PIECE_HH
