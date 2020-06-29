@@ -11,7 +11,7 @@
 #include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_video.h>
 #include <chess/piece_images.hh>
-#include <vector>
+#include <set>
 
 namespace chess
 {
@@ -78,8 +78,22 @@ class Piece
      *
      */
     bool hasCrown_;
-    std::vector<SDL_Point> validMoves;
-    PieceImages images;
+    /**
+     * @brief The moves that are valid for this piece. Moves are SDL_Points centered around the piece's current
+     * position.
+     *
+     */
+    const std::set<SDL_Point> &validMoves;
+    /**
+     * @brief The images of this piece, for blitting to the screen. They are owned by its factory.
+     *
+     */
+    const PieceImages &images;
+    /**
+     * @brief The factory that created this piece. Useful in play for re-rendering a piece.
+     *
+     */
+    PieceFactory &factory;
 };
 } // namespace chess
 
