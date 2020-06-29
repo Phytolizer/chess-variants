@@ -9,7 +9,7 @@ SDLException::SDLException(std::string_view message)
 {
     if (message.empty())
     {
-        what_str = util::toString(sdl_error);
+        what_str = sdl_error;
     }
     else
     {
