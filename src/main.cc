@@ -66,15 +66,19 @@ int main()
                 run = false;
                 break;
             }
-            if (e.type == SDL_WINDOWEVENT)
+            else if (e.type == SDL_WINDOWEVENT)
             {
                 SDL_WindowEvent we = e.window;
                 if (we.event == SDL_WINDOWEVENT_SIZE_CHANGED)
                 {
                     width = we.data1;
                     height = we.data2;
-                    activeGame.redraw(renderer, width, height, margin, xGridAmount, yGridAmount);
                 }
+            }
+            else if (e.type == SDL_RENDER_TARGETS_RESET)
+            {
+                // refresh all textures
+                activeGame.redraw(renderer, width, height, margin, xGridAmount, yGridAmount);
             }
         }
 
