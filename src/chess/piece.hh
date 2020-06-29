@@ -11,6 +11,7 @@
 #include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_video.h>
 #include <chess/piece_images.hh>
+#include <sdl_wrapper/primitives/point.hh>
 #include <set>
 
 namespace chess
@@ -73,7 +74,8 @@ class Piece
     friend class PieceFactory;
 
   private:
-    Piece(PieceFactory &factory, const std::set<SDL_Point> &validMoves, const PieceImages &images, SDL_Color color);
+    Piece(PieceFactory &factory, const std::set<sdl::primitives::Point> &validMoves, const PieceImages &images,
+          SDL_Color color);
     /**
      * @brief The piece's color, typically white or black
      *
@@ -90,7 +92,7 @@ class Piece
      * position.
      *
      */
-    const std::set<SDL_Point> &validMoves;
+    const std::set<sdl::primitives::Point> &validMoves;
     /**
      * @brief The images of this piece, for blitting to the screen. They are owned by its factory.
      *

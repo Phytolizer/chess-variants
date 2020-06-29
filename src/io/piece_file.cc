@@ -2,6 +2,7 @@
 #include <chess/piece_factory.hh>
 #include <fstream>
 #include <sdl_wrapper/colors.hh>
+#include <sdl_wrapper/primitives/point.hh>
 #include <sdl_wrapper/render/texture.hh>
 #include <string>
 #include <util/util.hh>
@@ -24,7 +25,7 @@ chess::PieceFactory readPieceFile(sdl::image::Context &imgContext, std::string_v
 {
     std::ifstream file(fileName.data());
     std::string line;
-    std::set<SDL_Point> validMoves;
+    std::set<sdl::primitives::Point> validMoves;
     std::string whiteFile;
     std::string blackFile;
     std::string pieceName;
@@ -93,7 +94,7 @@ chess::PieceFactory readPieceFile(sdl::image::Context &imgContext, std::string_v
                 }
 
                 // append to list
-                validMoves.insert({x, y});
+                validMoves.insert(sdl::primitives::Point{{x, y}});
             }
             break;
         }

@@ -12,7 +12,9 @@
 #include <chess/piece.hh>
 #include <chess/piece_images.hh>
 #include <memory>
+#include <sdl_wrapper/primitives/point.hh>
 #include <set>
+
 
 namespace chess
 {
@@ -33,7 +35,7 @@ class PieceFactory
      * @param whiteSurface an image of the white version of this piece
      * @param blackSurface an image of the black version of this piece
      */
-    PieceFactory(std::set<SDL_Point> validMoves, sdl::surface::Surface whiteSurface,
+    PieceFactory(std::set<sdl::primitives::Point> validMoves, sdl::surface::Surface whiteSurface,
                  sdl::surface::Surface blackSurface);
 
     /**
@@ -67,7 +69,7 @@ class PieceFactory
      * @brief The set of valid moves for this piece class.
      *
      */
-    std::set<SDL_Point> validMoves;
+    std::set<sdl::primitives::Point> validMoves;
     /**
      * @brief The Texture versions of whiteSurface and blackSurface.
      *

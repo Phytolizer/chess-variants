@@ -3,7 +3,7 @@
 
 namespace chess
 {
-PieceFactory::PieceFactory(std::set<SDL_Point> validMoves, sdl::surface::Surface whiteSurface,
+PieceFactory::PieceFactory(std::set<sdl::primitives::Point> validMoves, sdl::surface::Surface whiteSurface,
                            sdl::surface::Surface blackSurface)
     : whiteSurface(std::move(whiteSurface)), blackSurface(std::move(blackSurface)), validMoves(std::move(validMoves)),
       images(nullptr)

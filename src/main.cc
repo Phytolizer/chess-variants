@@ -59,7 +59,6 @@ int main()
     sdl::render::Renderer renderer = window.createRenderer().accelerated().build();
 
     chess::ChessGame activeGame(GRID_NCOLS, GRID_NROWS);
-    activeGame.redraw(renderer, width, height, MARGIN, GRID_NCOLS, GRID_NROWS);
 
     bool run = true;
     while (run)
