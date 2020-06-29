@@ -21,18 +21,18 @@ using std::cerr;
 
 /**
  * @brief The color used for the background in game
- * 
+ *
  */
 constexpr SDL_Color BG_COLOR = {0x44, 0x44, 0x44, 0xff};
 
 /**
  * @brief The width of the initial window
- * 
+ *
  */
 constexpr int INITIAL_WIDTH = 720;
 /**
  * @brief The height of the initial window
- * 
+ *
  */
 constexpr int INITIAL_HEIGHT = 480;
 

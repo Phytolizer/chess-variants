@@ -14,7 +14,7 @@
 /**
  * @namespace sdl
  * @brief The namespace under which all SDL wrapper classes and functions exist.
- * 
+ *
  */
 namespace sdl
 {
@@ -40,13 +40,13 @@ class Context
 
     /**
      * @brief copy constructor
-     * 
+     *
      * @param other the object to move from
      */
     Context(Context &&other);
     /**
      * @brief copy assignment operator
-     * 
+     *
      * @param other the object to move from
      * @return the object being moved to, for correctness
      */
@@ -54,7 +54,7 @@ class Context
 
     /**
      * @brief Initialize the SDL video subsystem
-     * 
+     *
      * @return video::Context an object representing the active state of the subsystem
      */
     video::Context initVideo();
@@ -62,7 +62,7 @@ class Context
   private:
     /**
      * @brief Describes whether this SDL context should quit SDL on destruction
-     * 
+     *
      */
     bool active;
 };

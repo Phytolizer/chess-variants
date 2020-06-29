@@ -28,13 +28,13 @@ class Context
   public:
     /**
      * @brief Initialize the SDL video subsystem. SDL must be initialized to do this.
-     * 
+     *
      */
     Context(::sdl::Context &);
     /**
      * @brief Initialize the SDL video subsystem using a specific driver. SDL must be
      * initialized to do this.
-     * 
+     *
      * @param driverName the driver to use
      */
     Context(::sdl::Context &, std::string_view driverName);
@@ -47,13 +47,13 @@ class Context
     Context &operator=(const Context &) = delete;
     /**
      * @brief move constructor
-     * 
+     *
      * @param other the object to move from
      */
     Context(Context &&other);
     /**
      * @brief move assignment operator
-     * 
+     *
      * @param other the object to move from
      * @return Context& the object that was moved to
      */
@@ -61,7 +61,7 @@ class Context
 
     /**
      * @brief Create a new window.
-     * 
+     *
      * @param title the window's title
      * @param x the window's x coordinate relative to the display's left side
      * @param y the window's y coordinate relative to the display's top side
@@ -74,12 +74,12 @@ class Context
   private:
     /**
      * @brief Whether this video context is active, used to determine whether to call SDL_QuitSubSystem
-     * 
+     *
      */
     bool active;
     /**
      * @brief A hook that is called on destruction if the context is active.
-     * 
+     *
      */
     void (*onQuit)();
 };

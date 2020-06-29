@@ -26,22 +26,22 @@ struct WindowBordersSize
 {
     /**
      * @brief The width of the top border decoration
-     * 
+     *
      */
     int top;
     /**
      * @brief The width of the left border decoration
-     * 
+     *
      */
     int left;
     /**
      * @brief The width of the bottom border decoration
-     * 
+     *
      */
     int bottom;
     /**
      * @brief The width of the right border decoration
-     * 
+     *
      */
     int right;
 };
@@ -54,17 +54,17 @@ struct GammaRamp
 {
     /**
      * @brief The translation table for the red channel
-     * 
+     *
      */
     std::array<Uint16, 256> red;
     /**
      * @brief The translation table for the green channel
-     * 
+     *
      */
     std::array<Uint16, 256> green;
     /**
      * @brief The translation table for the blue channel
-     * 
+     *
      */
     std::array<Uint16, 256> blue;
 };
@@ -332,7 +332,7 @@ class WeakWindow
     /**
      * @brief Set a callback for hit testing functionality.
      * Hit testing is useful for making parts of a window draggable other than its decorations.
-     * 
+     *
      * @param callback the function to call when hit testing
      * @param callbackData the data to pass to the function
      * @throw sdl::SDLException if there is an SDL error
@@ -341,35 +341,35 @@ class WeakWindow
 
     /**
      * @brief Set the window's icon.
-     * 
+     *
      * @param icon the icon
      */
     void setIcon(surface::WeakSurface icon) noexcept;
 
     /**
      * @brief Give the window input focus explicitly.
-     * 
+     *
      * @throw sdl::SDLException if there is an SDL error
      */
     void setAsFocus();
 
     /**
      * @brief Set the window's maximum size.
-     * 
+     *
      * @param maxSize the max size. `x` and `y` are ignored.
      */
     void setMaxSize(SDL_Rect maxSize) noexcept;
 
     /**
      * @brief Set the window's minimum size.
-     * 
+     *
      * @param minSize the min size. `x` and `y` are ignored.
      */
     void setMinSize(SDL_Rect minSize) noexcept;
 
     /**
      * @brief Set the window to be a modal for a parent window.
-     * 
+     *
      * @param parent the parent window
      * @throw sdl::SDLException if there is an SDL error
      */
@@ -377,7 +377,7 @@ class WeakWindow
 
     /**
      * @brief Set the window's opacity.
-     * 
+     *
      * @param opacity the opacity, from 0.0 to 1.0
      * @throw sdl::SDLException if there is an SDL error
      */
@@ -385,35 +385,35 @@ class WeakWindow
 
     /**
      * @brief Set the window's position relative to the display's upper left corner.
-     * 
+     *
      * @param position the position
      */
     void setPosition(SDL_Point position) noexcept;
 
     /**
      * @brief Set whether the window is resizable by a user.
-     * 
+     *
      * @param resizable whether it is resizable
      */
     void setResizable(bool resizable) noexcept;
 
     /**
      * @brief Set the window's client area size.
-     * 
+     *
      * @param size the size
      */
     void setSize(SDL_Rect size) noexcept;
 
     /**
      * @brief Set the window's title.
-     * 
+     *
      * @param title the title
      */
     void setTitle(std::string_view title) noexcept;
 
     /**
      * @brief Update the window's surface, pushing changes to the screen.
-     * 
+     *
      * @throw sdl::SDLException if there is an SDL error
      */
     void updateSurface();
@@ -421,14 +421,14 @@ class WeakWindow
     /**
      * @brief Like WeakWindow::updateSurface(), but only update the specified areas
      * of the surface.
-     * 
+     *
      * @param areas an array of SDL_Rects specifying the areas to update
      */
     void updateSurfaceAreas(std::vector<SDL_Rect> areas);
 
     /**
      * @brief Get the Renderer associated with this window.
-     * 
+     *
      * @return render::WeakRenderer the renderer
      * @throw sdl::SDLException if there is an SDL error
      */
@@ -446,7 +446,7 @@ class WeakWindow
   protected:
     /**
      * @brief The internal SDL handle that this window abstracts over
-     * 
+     *
      */
     SDL_Window *handle;
 };

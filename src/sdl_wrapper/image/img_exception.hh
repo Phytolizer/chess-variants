@@ -9,8 +9,8 @@
 #define SDL_WRAPPER_IMAGE_IMG_EXCEPTION_HH
 
 #include <stdexcept>
-#include <string_view>
 #include <string>
+#include <string_view>
 
 namespace sdl::image
 {

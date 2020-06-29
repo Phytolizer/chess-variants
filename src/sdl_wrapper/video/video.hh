@@ -35,17 +35,17 @@ struct Dpi
 {
     /**
      * @brief The diagonal DPI
-     * 
+     *
      */
     float diag;
     /**
      * @brief The horizontal DPI
-     * 
+     *
      */
     float horz;
     /**
      * @brief The vertical DPI
-     * 
+     *
      */
     float vert;
 };
@@ -61,7 +61,7 @@ struct Display
 {
     /**
      * @brief The display's index according to the system.
-     * 
+     *
      */
     int index;
 

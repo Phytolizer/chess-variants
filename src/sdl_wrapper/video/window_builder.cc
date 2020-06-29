@@ -3,8 +3,7 @@
 
 namespace sdl::video
 {
-WindowBuilder::WindowBuilder(video::Context &, std::string_view title, int x, int y,
-                             int w, int h)
+WindowBuilder::WindowBuilder(video::Context &, std::string_view title, int x, int y, int w, int h)
     : flags(0), title(title), x(x), y(y), w(w), h(h)
 {
 }

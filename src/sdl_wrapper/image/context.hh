@@ -12,19 +12,18 @@
 #include <sdl_wrapper/surface/surface.hh>
 #include <string_view>
 
-
 namespace sdl::image
 {
 /**
  * @brief A representation of SDL_image's active state. IMG_Quit will be called on its destruction.
- * 
+ *
  */
 class Context
 {
   public:
     /**
      * @brief Initialize SDL_image with the provided InitFlags.
-     * 
+     *
      * @param flags the components of SDL_image to initialize
      */
     Context(InitFlags flags);
@@ -33,13 +32,13 @@ class Context
     Context &operator=(const Context &) = delete;
     /**
      * @brief move constructor
-     * 
+     *
      * @param other the object to move from
      */
     Context(Context &&other);
     /**
      * @brief move assignment operator
-     * 
+     *
      * @param other the object to move from
      * @return Context& the object that was moved to
      */
@@ -56,7 +55,7 @@ class Context
   private:
     /**
      * @brief The active state of this context. Only one context should be active at a time.
-     * 
+     *
      */
     bool active;
 };

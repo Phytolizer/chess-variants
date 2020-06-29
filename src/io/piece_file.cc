@@ -79,7 +79,8 @@ chess::PieceFactory readPieceFile(sdl::image::Context &imgContext, std::string_v
                 }
                 catch (std::runtime_error &e)
                 {
-                    throw std::runtime_error(util::concat("reading piece file ", fileName, ": line ", lineNum, ": ", e.what()));
+                    throw std::runtime_error(
+                        util::concat("reading piece file ", fileName, ": line ", lineNum, ": ", e.what()));
                 }
                 try
                 {
@@ -87,7 +88,8 @@ chess::PieceFactory readPieceFile(sdl::image::Context &imgContext, std::string_v
                 }
                 catch (std::runtime_error &e)
                 {
-                    throw std::runtime_error(util::concat("reading piece file ", fileName, ": line ", lineNum, ": ", e.what()));
+                    throw std::runtime_error(
+                        util::concat("reading piece file ", fileName, ": line ", lineNum, ": ", e.what()));
                 }
 
                 // append to list

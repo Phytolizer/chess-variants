@@ -144,7 +144,7 @@ void convertPixels(int width, int height, Uint32 srcFormat, int srcPitch, const 
 
 /**
  * @brief Load a surface from a BMP file.
- * 
+ *
  * @param fileName the file to load
  * @return Surface the loaded surface
  */

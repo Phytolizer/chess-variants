@@ -27,7 +27,7 @@ class Texture : public WeakTexture
   public:
     /**
      * @brief Construct a new Texture with a specific pixel format, width, and height.
-     * 
+     *
      * @param renderer a renderer, required to create textures
      * @param pixelFormat the pixel format to use
      * @param access the accessibility of the texture, use SDL_TEXTUREACCESS_TARGET to allow
@@ -38,7 +38,7 @@ class Texture : public WeakTexture
     Texture(WeakRenderer renderer, Uint32 pixelFormat, int access, int w, int h);
     /**
      * @brief Construct a new Texture using an existing Surface.
-     * 
+     *
      * @param renderer a renderer, required to create textures
      * @param surface the surface to consume in creating this texture
      */
@@ -51,13 +51,13 @@ class Texture : public WeakTexture
 
     /**
      * @brief move constructor
-     * 
+     *
      * @param other the object to move from
      */
     Texture(Texture &&other);
     /**
      * @brief move assignment operator
-     * 
+     *
      * @param other the object to move from
      * @return Texture& the object that was moved to
      */

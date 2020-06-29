@@ -21,7 +21,7 @@ class WeakWindow;
 /**
  * @namespace sdl::render
  * @brief Contains most classes and functions based on SDL_render.h
- * 
+ *
  */
 namespace sdl::render
 {
@@ -47,7 +47,7 @@ class Renderer : public WeakRenderer
 
     /**
      * @brief Construct a new Renderer object using an existing handle.
-     * 
+     *
      * @param handle the handle
      */
     Renderer(SDL_Renderer *handle);
@@ -58,13 +58,13 @@ class Renderer : public WeakRenderer
 
     /**
      * @brief copy constructor
-     * 
+     *
      * @param other the object to move from
      */
     Renderer(Renderer &&other);
     /**
      * @brief copy assignment operator
-     * 
+     *
      * @param other the object to move from
      * @return Renderer& the object that was moved to
      */

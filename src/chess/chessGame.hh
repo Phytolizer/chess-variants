@@ -10,8 +10,8 @@
 
 #include <algorithm>
 #include <chess/gridSquare.hh>
-#include <vector>
 #include <sdl_wrapper/render/texture.hh>
+#include <vector>
 
 /**
  * @namespace chess
@@ -61,7 +61,7 @@ class ChessGame
     std::vector<chess::GridSquare *> grid;
     /**
      * @brief A rendered chess board to use in displayGrid.
-     * 
+     *
      */
     std::optional<sdl::render::Texture> chessBoard;
     /**

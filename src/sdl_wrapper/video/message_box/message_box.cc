@@ -58,7 +58,7 @@ MessageBox &MessageBox::setButtons(std::vector<MessageBoxButton> buttons)
     return *this;
 }
 
-MessageBox &MessageBox::setColorScheme(const SDL_MessageBoxColorScheme& cs)
+MessageBox &MessageBox::setColorScheme(const SDL_MessageBoxColorScheme &cs)
 {
     data.colorScheme = &cs;
     return *this;

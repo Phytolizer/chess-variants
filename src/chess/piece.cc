@@ -3,8 +3,7 @@
 
 namespace chess
 {
-Piece::Piece(PieceFactory &factory, const std::set<SDL_Point> &validMoves, const PieceImages &images,
-             SDL_Color color)
+Piece::Piece(PieceFactory &factory, const std::set<SDL_Point> &validMoves, const PieceImages &images, SDL_Color color)
     : color(color), hasCrown_(false), validMoves(validMoves), images(images), factory(factory)
 {
 }

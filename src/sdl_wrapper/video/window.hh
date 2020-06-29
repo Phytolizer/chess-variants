@@ -26,7 +26,7 @@ class Window : public WeakWindow
     /**
      * @brief Construct a new Window with a specified title, coordinates, size, and flags.
      * @see WindowBuilder
-     * 
+     *
      * @param title the window's title
      * @param x the window's x coordinate
      * @param y the window's y coordinate
@@ -37,13 +37,13 @@ class Window : public WeakWindow
     Window(video::Context &, std::string_view title, int x, int y, int w, int h, Uint32 flags);
     /**
      * @brief Construct a new Window from an existing handle.
-     * 
+     *
      * @param handle the handle
      */
     Window(SDL_Window *handle);
     /**
      * @brief Construct a new Window from an existing native window. This function is very dangerous.
-     * 
+     *
      * @param nativeData the data from the native window
      */
     Window(const void *nativeData);
@@ -57,13 +57,13 @@ class Window : public WeakWindow
 
     /**
      * @brief copy constructor
-     * 
+     *
      * @param other the object to move from
      */
     Window(Window &&other);
     /**
      * @brief copy assignment operator
-     * 
+     *
      * @param other the object to move from
      * @return Window& the object that was moved to
      */

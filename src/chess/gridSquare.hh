@@ -40,22 +40,22 @@ class GridSquare
   protected:
     /**
      * @brief The x position on the grid.
-     * 
+     *
      */
     int xPos;
     /**
      * @brief The y position on the grid.
-     * 
+     *
      */
     int yPos;
     /**
      * @brief The color.
-     * 
+     *
      */
     SDL_Color color;
     /**
      * @brief Whether to render this square or consider it in play.
-     * 
+     *
      */
     bool enabled;
 };

@@ -9,9 +9,9 @@
 #define SDL_WRAPPER_RWOPS_RWOPS_HH
 
 #include <SDL2/SDL_rwops.h>
+#include <cstddef>
 #include <string_view>
 #include <vector>
-#include <cstddef>
 
 /**
  * @namespace sdl::io
@@ -85,13 +85,13 @@ class RWops
 
     /**
      * @brief move constructor
-     * 
+     *
      * @param other the object to move from
      */
     RWops(RWops &&other);
     /**
      * @brief move assignment operator
-     * 
+     *
      * @param other the object to move from
      * @return RWops& the object that was moved to
      */
@@ -99,8 +99,8 @@ class RWops
 
     /**
      * @brief Read `amt` bytes from the stream.
-     * 
-     * @param amt the number of bytes to read 
+     *
+     * @param amt the number of bytes to read
      * @return std::vector<std::byte> the bytes read
      */
     std::vector<std::byte> read(Uint32 amt);
@@ -113,7 +113,7 @@ class RWops
     SDL_RWops *handle;
     /**
      * @brief Whether this object was default-constructed.
-     * 
+     *
      */
     bool allocd;
 };

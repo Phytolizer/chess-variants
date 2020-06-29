@@ -24,10 +24,10 @@ namespace io
 {
 /**
  * @brief Read a piece file and create a PieceFactory representing that kind of piece.
- * 
+ *
  * @param imgContext used to load images from file
  * @param fileName the piece file name
- * @return chess::PieceFactory 
+ * @return chess::PieceFactory
  */
 chess::PieceFactory readPieceFile(sdl::image::Context &imgContext, std::string_view fileName);
 } // namespace io
