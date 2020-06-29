@@ -33,7 +33,7 @@ class SDLException : public std::runtime_error
      * error that was reported at construction time. If `message` is an
      * empty string, then only the SDL error will be printed.
      */
-    virtual const char *what() const noexcept override;
+    const char *what() const noexcept override;
 
   private:
     std::string message;
