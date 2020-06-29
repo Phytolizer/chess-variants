@@ -1,6 +1,7 @@
 #include "piece_file.hh"
 #include <chess/piece_factory.hh>
 #include <fstream>
+#include <sdl_wrapper/colors.hh>
 #include <sdl_wrapper/render/texture.hh>
 #include <string>
 #include <util/util.hh>
@@ -61,20 +62,32 @@ chess::PieceFactory readPieceFile(sdl::image::Context &imgContext, std::string_v
                     throw std::runtime_error(util::concat("reading piece file ", fileName, ": line ", lineNum,
                                                           ": invalid format for move '", line, "'\n"));
                 }
+                // string representation of x coordinate
                 std::string xCoord = util::trim(line.substr(0, comma));
+                // string representation of y coordinate
                 std::string yCoord = util::trim(line.substr(comma + 1, line.length()));
-                char *end;
-                int x = std::strtol(xCoord.c_str(), &end, 10);
-                if (xCoord.length() == 0 || *end != '\0')
+
+                // this initial value is never read if an exception is not thrown
+
+                int x = 0;
+                int y = 0;
+
+                // parse coordinates to integers
+                try
                 {
-                    throw std::runtime_error(util::concat("reading piece file ", fileName, ": line ", lineNum, ": '",
-                                                          xCoord, "' is not an integer\n"));
+                    x = util::parseInt(xCoord);
                 }
-                int y = std::strtol(yCoord.c_str(), &end, 10);
-                if (yCoord.length() == 0 || *end != '\0')
+                catch (std::runtime_error &e)
                 {
-                    throw std::runtime_error(util::concat("reading piece file ", fileName, ": line ", lineNum, ": '",
-                                                          yCoord, "' is not an integer\n"));
+                    throw std::runtime_error(util::concat("reading piece file ", fileName, ": line ", lineNum, ": ", e.what()));
+                }
+                try
+                {
+                    y = util::parseInt(yCoord);
+                }
+                catch (std::runtime_error &e)
+                {
+                    throw std::runtime_error(util::concat("reading piece file ", fileName, ": line ", lineNum, ": ", e.what()));
                 }
 
                 // append to list
