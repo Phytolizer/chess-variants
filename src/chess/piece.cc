@@ -30,7 +30,7 @@ void Piece::takeCrown()
         throw std::runtime_error("taking crown from piece without crown");
     }
 }
-bool Piece::hasCrown()
+bool Piece::hasCrown() const
 {
     return hasCrown_;
 }

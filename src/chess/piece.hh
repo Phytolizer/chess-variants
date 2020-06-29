@@ -46,7 +46,7 @@ class Piece
      * @return true the piece has a crown
      * @return false the piece does not have a crown
      */
-    bool hasCrown();
+    bool hasCrown() const;
     /**
      * @brief Get the valid moves for this piece. Valid moves are relative to the
      * piece's current position. Positive y values represent the forward direction.
