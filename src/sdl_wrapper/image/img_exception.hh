@@ -37,6 +37,7 @@ class IMGException : public std::runtime_error
   private:
     std::string message;
     std::string img_error;
+    std::string what_str;
 };
 } // namespace sdl::image
 
