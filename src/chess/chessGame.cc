@@ -31,13 +31,10 @@ ChessGame::ChessGame(int xGridAmount, int yGridAmount)
 
 void ChessGame::redraw(sdl::render::Renderer &rr, int width, int height, int margin, int nCols, int nRows)
 {
-    squareSize = ((100 - margin * 2) * std::min(height / nRows, width / nCols) / 100);
     constexpr int HUNDRED_PERCENT = 100;
     squareSize = ((HUNDRED_PERCENT - margin * 2) * std::min(height / nRows, width / nCols) / HUNDRED_PERCENT);
     xDisplacement = (width - squareSize * nCols) / 2;
     yDisplacement = (height - squareSize * nRows) / 2;
-    int oldW = chessBoard ? chessBoard->getWidth() : 0;
-    int oldH = chessBoard ? chessBoard->getHeight() : 0;
     chessBoard = {sdl::render::Texture(rr, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, squareSize * nCols,
                                        squareSize * nRows)};
     rr.setTarget(*chessBoard);
