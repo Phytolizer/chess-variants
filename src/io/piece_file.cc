@@ -23,7 +23,7 @@ chess::PieceFactory readPieceFile(sdl::image::Context &imgContext, std::string_v
 {
     std::ifstream file(fileName.data());
     std::string line;
-    std::vector<SDL_Point> validMoves;
+    std::set<SDL_Point> validMoves;
     std::string whiteFile;
     std::string blackFile;
     std::string pieceName;
@@ -76,7 +76,9 @@ chess::PieceFactory readPieceFile(sdl::image::Context &imgContext, std::string_v
                     throw std::runtime_error(util::concat("reading piece file ", fileName, ": line ", lineNum, ": '",
                                                           yCoord, "' is not an integer\n"));
                 }
-                validMoves.push_back({x, y});
+
+                // append to list
+                validMoves.insert({x, y});
             }
             break;
         }
