@@ -35,14 +35,14 @@ class Context
      *
      * @param other the object to move from
      */
-    Context(Context &&other);
+    Context(Context &&other) noexcept;
     /**
      * @brief move assignment operator
      *
      * @param other the object to move from
      * @return Context& the object that was moved to
      */
-    Context &operator=(Context &&other);
+    Context &operator=(Context &&other) noexcept;
 
     /**
      * @brief Load an image to a surface for use in the program.

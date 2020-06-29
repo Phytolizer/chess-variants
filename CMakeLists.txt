@@ -18,3 +18,5 @@ if(MSVC)
 else()
   target_compile_options(chessvariants PRIVATE -Wall -Wextra -pedantic)
 endif()
+
+target_link_options(chessvariants PRIVATE "-L${CMAKE_CURRENT_LIST_DIR}/build")

@@ -30,12 +30,12 @@ Renderer::~Renderer()
     }
 }
 
-Renderer::Renderer(Renderer &&other) : WeakRenderer(other.handle)
+Renderer::Renderer(Renderer &&other) noexcept : WeakRenderer(other.handle)
 {
     other.handle = nullptr;
 }
 
-Renderer &Renderer::operator=(Renderer &&other)
+Renderer &Renderer::operator=(Renderer &&other) noexcept
 {
     if (&other != this)
     {

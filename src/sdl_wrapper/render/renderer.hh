@@ -61,14 +61,14 @@ class Renderer : public WeakRenderer
      *
      * @param other the object to move from
      */
-    Renderer(Renderer &&other);
+    Renderer(Renderer &&other) noexcept;
     /**
      * @brief copy assignment operator
      *
      * @param other the object to move from
      * @return Renderer& the object that was moved to
      */
-    Renderer &operator=(Renderer &&other);
+    Renderer &operator=(Renderer &&other) noexcept;
 };
 } // namespace sdl::render
 

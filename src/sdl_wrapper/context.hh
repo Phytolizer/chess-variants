@@ -43,14 +43,14 @@ class Context
      *
      * @param other the object to move from
      */
-    Context(Context &&other);
+    Context(Context &&other) noexcept;
     /**
      * @brief copy assignment operator
      *
      * @param other the object to move from
      * @return the object being moved to, for correctness
      */
-    Context &operator=(Context &&other);
+    Context &operator=(Context &&other) noexcept;
 
     /**
      * @brief Initialize the SDL video subsystem

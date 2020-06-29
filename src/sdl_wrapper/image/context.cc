@@ -21,12 +21,12 @@ Context::~Context()
     }
 }
 
-Context::Context(Context &&other) : active(other.active)
+Context::Context(Context &&other) noexcept : active(other.active)
 {
     other.active = false;
 }
 
-Context &Context::operator=(Context &&other)
+Context &Context::operator=(Context &&other) noexcept
 {
     if (&other != this)
     {

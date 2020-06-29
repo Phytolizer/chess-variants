@@ -1,4 +1,5 @@
 #include "weak_renderer.hh"
+#include <cstring>
 #include <sdl_wrapper/render/texture.hh>
 #include <sdl_wrapper/sdl_exception.hh>
 
@@ -19,7 +20,7 @@ int WeakRenderer::getNumRenderDrivers()
 
 SDL_BlendMode WeakRenderer::getDrawBlendMode() const
 {
-    SDL_BlendMode mode;
+    SDL_BlendMode mode{};
     int code = SDL_GetRenderDrawBlendMode(handle, &mode);
     if (code != 0)
     {
@@ -53,7 +54,7 @@ void WeakRenderer::clear()
     }
 }
 
-void WeakRenderer::copy(const Texture &texture, std::optional<SDL_Rect> src, std::optional<SDL_Rect> dest)
+void WeakRenderer::copy(const WeakTexture texture, std::optional<SDL_Rect> src, std::optional<SDL_Rect> dest)
 {
     SDL_Rect *srcRect = nullptr;
     if (src)
@@ -72,7 +73,7 @@ void WeakRenderer::copy(const Texture &texture, std::optional<SDL_Rect> src, std
     }
 }
 
-void WeakRenderer::copy(const Texture &texture, std::optional<SDL_Rect> src, std::optional<SDL_Rect> dest, double angle,
+void WeakRenderer::copy(const WeakTexture texture, std::optional<SDL_Rect> src, std::optional<SDL_Rect> dest, double angle,
                         std::optional<SDL_Point> center, SDL_RendererFlip flip)
 {
     SDL_Rect *srcRect = nullptr;
@@ -233,7 +234,7 @@ SDL_Rect WeakRenderer::getLogicalSize() const noexcept
 
 ScalingFactors WeakRenderer::getScale() const noexcept
 {
-    ScalingFactors scale;
+    ScalingFactors scale{};
     SDL_RenderGetScale(handle, &scale.scaleX, &scale.scaleY);
     return scale;
 }

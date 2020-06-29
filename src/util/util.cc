@@ -1,4 +1,5 @@
 #include "util.hh"
+#include <algorithm>
 
 namespace util
 {
@@ -14,7 +15,7 @@ std::string trim(std::string_view s)
 
 long parseInt(std::string_view s)
 {
-    char *end;
+    char *end = nullptr;
     constexpr int BASE = 10;
     long l = std::strtol(s.data(), &end, BASE);
     if (s.length() == 0 || *end != '\0')

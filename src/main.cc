@@ -12,9 +12,11 @@
 #include <sdl_wrapper/render/texture.hh>
 #include <sdl_wrapper/video/window.hh>
 
-#include "chess/chessGame.hh"
+#include <chess/chessGame.hh>
 #include <cmath>
 #include <iostream>
+#include <sdl_wrapper/sdl_exception.hh>
+#include <util/util.hh>
 #include <vector>
 
 using std::cerr;
@@ -59,6 +61,8 @@ int main()
     sdl::render::Renderer renderer = window.createRenderer().accelerated().build();
 
     chess::ChessGame activeGame(GRID_NCOLS, GRID_NROWS);
+
+    activeGame.redraw(renderer, width, height, MARGIN, GRID_NCOLS, GRID_NROWS);
 
     bool run = true;
     while (run)

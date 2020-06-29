@@ -15,7 +15,6 @@
 
 namespace sdl::render
 {
-class Texture;
 
 /**
  * @brief Hold the scaling factors that are returned from Renderer::getScale.
@@ -114,7 +113,7 @@ class WeakRenderer
      * @param dest the texture's destination rectangle, or std::nullopt
      * to copy to the entire render target
      */
-    void copy(const Texture &texture, std::optional<SDL_Rect> src, std::optional<SDL_Rect> dest);
+    void copy(WeakTexture texture, std::optional<SDL_Rect> src, std::optional<SDL_Rect> dest);
     /**
      * @brief Copy a texture to the renderer's target
      *
@@ -126,7 +125,7 @@ class WeakRenderer
      * center
      * @param flip the flipping action to perform on the texture
      */
-    void copy(const Texture &texture, std::optional<SDL_Rect> src, std::optional<SDL_Rect> dest, double angle,
+    void copy(WeakTexture texture, std::optional<SDL_Rect> src, std::optional<SDL_Rect> dest, double angle,
               std::optional<SDL_Point> center, SDL_RendererFlip flip);
     /**
      * @brief Set the drawing color for the renderer

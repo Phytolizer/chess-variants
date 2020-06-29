@@ -16,6 +16,9 @@
 
 namespace chess
 {
+
+class PieceFactory;
+
 /**
  * @brief An abstract chess piece. Pieces have a way to display themselves, a crown (if they are the
  * piece that needs to be checkmated), a selected state, a set of valid moves, and a color (typically
