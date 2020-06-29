@@ -1,43 +1,78 @@
 /**
  * @file piece_factory.hh
  * @author Kyle Coffey (kylecoffey1999@gmail.com)
- * @brief Contains a factory for Piece objects.
- * @date 2020-06-26
+ * @brief Contains the PieceFactory class
+ * @date 2020-06-29
  */
 
 #ifndef CHESS_PIECE_FACTORY_HH
 #define CHESS_PIECE_FACTORY_HH
 
-#include <chess/piece_images.hh>
 #include <SDL2/SDL_rect.h>
 #include <chess/piece.hh>
-#include <sdl_wrapper/render/texture.hh>
-#include <vector>
+#include <chess/piece_images.hh>
+#include <memory>
+#include <set>
 
 namespace chess
 {
-
 /**
- * @brief Creates many Piece objects of a particular type (e.g. King, Knight, etc.)
+ * @brief Creates Pieces of a certain type. This type is defined by the constructor of the PieceFactory.
+ *
+ * The PieceFactory owns the images for its pieces. When render targets are reset, they should be reloaded.
  *
  */
 class PieceFactory
 {
   public:
     /**
-     * @brief Construct a new piece factory for a piece with specified valid moves and images.
-     */
-    PieceFactory();
-    /**
-     * @brief Create the specified chess piece.
+     * @brief Construct a new Piece Factory object for a specified piece definition. Pieces
+     * are defined by their set of valid moves and the images that represent them.
      *
-     * @param validMoves the piece's valid moves
-     * @param images the images of the piece to render
-     * @return Piece a piece with the requested format
+     * @param validMoves The set of moves that are valid for this piece
+     * @param whiteSurface an image of the white version of this piece
+     * @param blackSurface an image of the black version of this piece
      */
-    Piece create(std::vector<SDL_Point> validMoves, PieceImages images);
+    PieceFactory(std::set<SDL_Point> validMoves, sdl::surface::Surface whiteSurface,
+                 sdl::surface::Surface blackSurface);
+
+    /**
+     * @brief Render the images to a texture for hardware-accelerated blitting. Blitting is done
+     * for a Piece, not the factory, but the factory owns the textures.
+     *
+     * @param renderer the renderer to create textures with
+     */
+    void render(sdl::render::WeakRenderer renderer);
+
+    /**
+     * @brief Create a Piece with the specified color.
+     *
+     * @param color the color
+     * @return Piece the piece
+     */
+    Piece getPiece(SDL_Color color);
 
   private:
+    /**
+     * @brief An owned image of the white version of this piece class.
+     *
+     */
+    sdl::surface::Surface whiteSurface;
+    /**
+     * @brief An owned image of the black version of this piece class.
+     *
+     */
+    sdl::surface::Surface blackSurface;
+    /**
+     * @brief The set of valid moves for this piece class.
+     *
+     */
+    std::set<SDL_Point> validMoves;
+    /**
+     * @brief The Texture versions of whiteSurface and blackSurface.
+     *
+     */
+    std::unique_ptr<PieceImages> images;
 };
 } // namespace chess
 
