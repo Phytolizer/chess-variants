@@ -38,6 +38,7 @@ class SDLException : public std::runtime_error
   private:
     std::string message;
     std::string sdl_error;
+    std::string what_str;
 };
 
 #endif // SDL_WRAPPER_SDL_EXCEPTION_HH
