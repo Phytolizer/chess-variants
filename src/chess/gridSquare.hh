@@ -23,10 +23,10 @@ class GridSquare
      *
      * @param x the x position
      * @param y the y position
-     * @param c the color
-     * @param e is the square enabled (i.e. does it exist on this board)?
+     * @param color the color
+     * @param enabled is the square enabled (i.e. does it exist on this board)?
      */
-    GridSquare(int x, int y, SDL_Color c, bool e);
+    GridSquare(int x, int y, SDL_Color color, bool enabled);
     /**
      * @brief Show the grid square using the renderer provided.
      *
