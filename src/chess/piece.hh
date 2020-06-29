@@ -66,7 +66,14 @@ class Piece
      */
     bool validateMove(SDL_Point relMove);
 
-  protected:
+    /**
+     * @brief The piece factory is allowed to call the private constructor of Piece.
+     *
+     */
+    friend class PieceFactory;
+
+  private:
+    Piece(PieceFactory &factory, const std::set<SDL_Point> &validMoves, const PieceImages &images, SDL_Color color);
     /**
      * @brief The piece's color, typically white or black
      *
