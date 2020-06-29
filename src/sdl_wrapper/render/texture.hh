@@ -9,7 +9,7 @@
 #define SDL_WRAPPER_RENDER_TEXTURE_HH
 
 #include <SDL2/SDL_render.h>
-#include <sdl_wrapper/render/renderer.hh>
+#include <sdl_wrapper/render/weak_renderer.hh>
 #include <sdl_wrapper/render/weak_texture.hh>
 #include <sdl_wrapper/surface/surface.hh>
 
@@ -35,14 +35,14 @@ class Texture : public WeakTexture
      * @param w the texture's width in pixels
      * @param h the texture's height in pixels
      */
-    Texture(Renderer &renderer, Uint32 pixelFormat, int access, int w, int h);
+    Texture(WeakRenderer renderer, Uint32 pixelFormat, int access, int w, int h);
     /**
      * @brief Construct a new Texture using an existing Surface.
      * 
      * @param renderer a renderer, required to create textures
      * @param surface the surface to consume in creating this texture
      */
-    Texture(Renderer &renderer, surface::Surface &surface);
+    Texture(WeakRenderer renderer, surface::Surface &surface);
 
     virtual ~Texture();
 

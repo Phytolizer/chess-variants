@@ -6,7 +6,7 @@
 namespace sdl::render
 {
 
-Texture::Texture(Renderer &renderer, Uint32 pixelFormat, int access, int w, int h)
+Texture::Texture(WeakRenderer renderer, Uint32 pixelFormat, int access, int w, int h)
     : WeakTexture(SDL_CreateTexture(renderer.getHandle(), pixelFormat, access, w, h), w, h)
 {
     if (handle == nullptr)
@@ -15,7 +15,7 @@ Texture::Texture(Renderer &renderer, Uint32 pixelFormat, int access, int w, int 
     }
 }
 
-Texture::Texture(Renderer &renderer, surface::Surface &surface)
+Texture::Texture(WeakRenderer renderer, surface::Surface &surface)
     : WeakTexture(SDL_CreateTextureFromSurface(renderer.getHandle(), surface.getHandle()), surface.getHandle()->w,
                   surface.getHandle()->h)
 {
