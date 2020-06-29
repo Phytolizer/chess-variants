@@ -20,15 +20,10 @@
 using std::cerr;
 
 /**
- * @brief Draw the chess board for the game. It is drawn to a texture which is then returned.
- *
- * @param renderer a renderer that is able to target textures
- * @param pixelFormat the pixel format to use for the texture
- * @return sdl::render::Texture a texture with a chess board on it
+ * @brief The color used for the background in game
+ * 
  */
-sdl::render::Texture drawChessBoard(sdl::render::Renderer &renderer, Uint32 pixelFormat)
-{
-}
+constexpr SDL_Color BG_COLOR = {0x44, 0x44, 0x44, 0xff};
 
 /**
  * @brief The main function.
@@ -78,13 +73,16 @@ int main()
             else if (e.type == SDL_RENDER_TARGETS_RESET)
             {
                 // refresh all textures
-                activeGame.redraw(renderer, width, height, margin, xGridAmount, yGridAmount);
+                activeGame.redraw(renderer, width, height, MARGIN, GRID_NCOLS, GRID_NROWS);
+            }
+            else if (e.type == SDL_QUIT)
+            {
+                run = false;
+                break;
             }
         }
 
-        auto bgColor = SDL_Color{0x44, 0x44, 0x44, 0xff};
-
-        renderer.setDrawColor(bgColor);
+        renderer.setDrawColor(BG_COLOR);
         renderer.clear();
 
         activeGame.displayGrid(renderer);
