@@ -82,7 +82,9 @@ int main()
             }
         }
 
-        renderer.setDrawColor({0x44, 0x44, 0x44, 0xff});
+        auto bgColor = SDL_Color{0x44, 0x44, 0x44, 0xff};
+
+        renderer.setDrawColor(bgColor);
         renderer.clear();
 
         activeGame.displayGrid(renderer);
