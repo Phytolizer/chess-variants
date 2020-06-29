@@ -12,7 +12,6 @@
 #include <sstream>
 #include <string>
 
-
 /**
  * @namespace util
  * @brief Various utility functions for coding convenience
@@ -118,11 +117,23 @@ std::string trim(std::string_view s);
 
 /**
  * @brief Parse an integer from a string.
- * 
+ *
  * @param s the string
  * @return long the integer
  */
 long parseInt(std::string_view s);
+
+/**
+ * @brief Convert `it` to a string representation. It must have an overloaded `operator<<` for ostreams.
+ *
+ * @tparam T the type of `it`
+ * @param it the value to convert
+ * @return std::string the converted value
+ */
+template <typename T> std::string toString(T it)
+{
+    return concat(it);
+}
 } // namespace util
 
 #endif // UTIL_UTIL_HH
