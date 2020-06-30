@@ -17,9 +17,20 @@
  */
 namespace sdl::primitives
 {
+/**
+ * @brief Extension of the SDL_Point struct.
+ * 
+ */
 struct Point : public SDL_Point
 {
   public:
+    /**
+     * @brief Compare two points.
+     * 
+     * @param other the other point
+     * @return true the magnitude of this point is less than the other's
+     * @return false the magnitude of this point is not less than the other's
+     */
     bool operator<(const SDL_Point &other) const;
   private:
 };
