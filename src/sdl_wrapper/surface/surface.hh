@@ -95,14 +95,14 @@ class Surface : public WeakSurface
      *
      * @param other the object to move from
      */
-    Surface(Surface &&other);
+    Surface(Surface &&other) noexcept;
     /**
      * @brief move assignment operator
      *
      * @param other the object to move from
      * @return Surface& the object that was moved to
      */
-    Surface &operator=(Surface &&other);
+    Surface &operator=(Surface &&other) noexcept;
 
     /**
      * @brief Copy a surface into a new one that is optimized for blitting to a particular pixel format.

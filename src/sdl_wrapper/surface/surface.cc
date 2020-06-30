@@ -10,7 +10,7 @@ Surface::Surface(SDL_Surface *handle) : WeakSurface(handle)
 Surface::Surface(int width, int height, int depth, Uint32 rmask, Uint32 gmask, Uint32 bmask, Uint32 amask)
     : WeakSurface(SDL_CreateRGBSurface(0, width, height, depth, rmask, gmask, bmask, amask))
 {
-    if (handle == nullptr)
+    if (getHandle() == nullptr)
     {
         throw SDLException("creating surface");
     }
@@ -19,7 +19,7 @@ Surface::Surface(void *pixels, int width, int height, int depth, int pitch, Uint
                  Uint32 amask)
     : WeakSurface(SDL_CreateRGBSurfaceFrom(pixels, width, height, depth, pitch, rmask, gmask, bmask, amask))
 {
-    if (handle == nullptr)
+    if (getHandle() == nullptr)
     {
         throw SDLException("creating surface from pixel data");
     }
@@ -27,7 +27,7 @@ Surface::Surface(void *pixels, int width, int height, int depth, int pitch, Uint
 Surface::Surface(int width, int height, int depth, Uint32 pixelFormat)
     : WeakSurface(SDL_CreateRGBSurfaceWithFormat(0, width, height, depth, pixelFormat))
 {
-    if (handle == nullptr)
+    if (getHandle() == nullptr)
     {
         throw SDLException("creating surface with pixel format");
     }
@@ -35,37 +35,37 @@ Surface::Surface(int width, int height, int depth, Uint32 pixelFormat)
 Surface::Surface(void *pixels, int width, int height, int depth, int pitch, Uint32 pixelFormat)
     : WeakSurface(SDL_CreateRGBSurfaceWithFormatFrom(pixels, width, height, depth, pitch, pixelFormat))
 {
-    if (handle == nullptr)
+    if (getHandle() == nullptr)
     {
         throw SDLException("creating surface with pixel format from pixel data");
     }
 }
 Surface::~Surface()
 {
-    if (handle != nullptr)
+    if (getHandle() != nullptr)
     {
-        SDL_FreeSurface(handle);
+        SDL_FreeSurface(getHandle());
     }
 }
 
-Surface::Surface(Surface &&other) : WeakSurface(other.handle)
+Surface::Surface(Surface &&other) noexcept : WeakSurface(other.getHandle())
 {
-    other.handle = nullptr;
+    other.setHandle(nullptr);
 }
 
-Surface &Surface::operator=(Surface &&other)
+Surface &Surface::operator=(Surface &&other) noexcept
 {
     if (&other != this)
     {
-        handle = other.handle;
-        other.handle = nullptr;
+        setHandle(other.getHandle());
+        other.setHandle(nullptr);
     }
     return *this;
 }
 
 Surface Surface::convert(SDL_PixelFormat fmt)
 {
-    SDL_Surface *nHandle = SDL_ConvertSurface(handle, &fmt, 0);
+    SDL_Surface *nHandle = SDL_ConvertSurface(getHandle(), &fmt, 0);
     if (nHandle == nullptr)
     {
         throw SDLException("converting surface");
@@ -75,7 +75,7 @@ Surface Surface::convert(SDL_PixelFormat fmt)
 
 Surface Surface::convertFormat(Uint32 fmt)
 {
-    SDL_Surface *nHandle = SDL_ConvertSurfaceFormat(handle, fmt, 0);
+    SDL_Surface *nHandle = SDL_ConvertSurfaceFormat(getHandle(), fmt, 0);
     if (nHandle == nullptr)
     {
         throw SDLException("converting surface format");

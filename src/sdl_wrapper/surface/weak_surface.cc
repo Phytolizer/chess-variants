@@ -139,4 +139,9 @@ void WeakSurface::unlock() noexcept
 {
     SDL_UnlockSurface(handle);
 }
+
+void WeakSurface::setHandle(SDL_Surface *handle)
+{
+    this->handle = handle;
+}
 } // namespace sdl::surface

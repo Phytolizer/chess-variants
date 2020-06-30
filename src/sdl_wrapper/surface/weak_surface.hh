@@ -119,6 +119,14 @@ class WeakSurface
 
   protected:
     /**
+     * @brief Set the internal handle.
+     *
+     * @param handle the new handle
+     */
+    void setHandle(SDL_Surface *handle);
+
+  private:
+    /**
      * @brief The internal SDL handle which this surface abstracts over
      *
      */
