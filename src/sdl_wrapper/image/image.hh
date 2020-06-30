@@ -8,7 +8,7 @@
 #ifndef SDL_WRAPPER_IMAGE_IMAGE_HH
 #define SDL_WRAPPER_IMAGE_IMAGE_HH
 
-#include <SDL_image/SDL_image.h>
+#include <SDL2/SDL_image.h>
 #include <sdl_wrapper/surface/surface.hh>
 #include <string_view>
 

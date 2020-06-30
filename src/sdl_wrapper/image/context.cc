@@ -1,5 +1,5 @@
 #include "context.hh"
-#include <SDL_image/SDL_image.h>
+#include <SDL2/SDL_image.h>
 #include <sdl_wrapper/image/img_exception.hh>
 
 namespace sdl::image

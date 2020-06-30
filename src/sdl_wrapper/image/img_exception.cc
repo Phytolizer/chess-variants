@@ -1,5 +1,5 @@
 #include "img_exception.hh"
-#include <SDL_image/SDL_image.h>
+#include <SDL2/SDL_image.h>
 #include <sstream>
 #include <util/util.hh>
 
