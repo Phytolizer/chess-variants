@@ -50,7 +50,7 @@ Context::Context(int flags, MixerSpec spec, int chunkSize) : active(true)
             throw MixException(message.str());
         }
     }
-    code = Mix_OpenAudio(spec.frequency, spec.format, spec.numChannels, chunkSize);
+    code = Mix_OpenAudio(spec.frequency, spec.format.get(), spec.numChannels, chunkSize);
     if (code != 0)
     {
         throw MixException(util::concat("opening audio with spec: ", spec));
@@ -95,6 +95,6 @@ MixerSpec Context::querySpec() const
     {
         throw MixException("querying spec");
     }
-    return {frequency, format, channels};
+    return {frequency, audio::SampleFormat{format}, channels};
 }
 } // namespace sdl::mixer

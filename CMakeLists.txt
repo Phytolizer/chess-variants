@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 17)
 file(GLOB_RECURSE SOURCES "src/*.cc")
 
 add_executable(chessvariants ${SOURCES})
-target_link_libraries(chessvariants SDL2 SDL_image SDL_ttf)
+target_link_libraries(chessvariants SDL2 SDL2_image SDL2_ttf SDL2_mixer)
 target_include_directories(chessvariants PRIVATE src)
 target_include_directories(chessvariants PRIVATE include)
 

@@ -59,6 +59,8 @@ class SampleFormat
      */
     SampleFormat operator~();
 
+    Uint16 get() const;
+
     // friend overloaded operators (symmetric)
 
     friend SampleFormat operator|(const SampleFormat &a, const SampleFormat &b);
